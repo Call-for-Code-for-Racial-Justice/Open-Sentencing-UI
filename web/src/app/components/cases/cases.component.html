@@ -1,0 +1,40 @@
+<ng-template #overflowMenuItemTemplate let-data="data">
+    <ibm-overflow-menu flip="true">
+        <ibm-overflow-menu-option> edit</ibm-overflow-menu-option>
+        <ibm-overflow-menu-option> delete </ibm-overflow-menu-option>
+    </ibm-overflow-menu>
+</ng-template>
+
+<div ibmGrid class="bx--grid--full-width landing-page">
+    <div ibmRow class="landing-page__banner">
+        <div ibmCol [columnNumbers]="{'lg': 16}">
+
+            <h1 class="landing-page__heading">
+                Cases
+            </h1>
+        </div>
+    </div>
+    <div ibmRow class="landing-page__r3">
+        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 16}">
+            <div class="outside bx--col-padding">
+                <ibm-table-container>
+                    <ibm-table-toolbar>
+                        <ibm-table-toolbar-content>
+                            <ibm-table-toolbar-search
+                              [expandable]="true"
+                              placeholder="Search"
+                              (valueChange)="filterModelData($event)">
+                            </ibm-table-toolbar-search>
+                            <button ibmButton="primary" size="sm" (click)="openCaseModal()">
+                      Add a new case<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+                    </button>
+                        </ibm-table-toolbar-content>
+                    </ibm-table-toolbar>
+                    <ibm-table [model]="model" [stickyHeader]="stickyHeader" [size]="tableSize" [skeleton]="skeleton" [enableSingleSelect]="enableSingleSelect" [showSelectionColumn]="showSelectionColumn" [striped]="striped" [isDataGrid]="isDataGrid">
+                    </ibm-table>
+                    <!-- <ibm-pagination [model]="model" (selectPage)="selectPage($event)"></ibm-pagination> -->
+                </ibm-table-container>
+            </div>
+        </div>
+    </div>
+</div>
