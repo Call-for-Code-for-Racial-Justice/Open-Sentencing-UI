@@ -51,7 +51,7 @@ export class CaseComponent implements OnInit {
   constructor(private caseService: CaseService, protected modalService: ModalService) {}
 
   selectPage(page) {
-    this.caseService.getPage(page, this.pageLength)
+    this.caseService.getPage(page, this.model.pageLength)
       .subscribe((data: Array<Array<any>>) => {
         // set the data and update page
         // let data = this.caseService.getPage(page, this.pageLength);
