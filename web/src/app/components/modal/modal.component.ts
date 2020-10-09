@@ -9,6 +9,7 @@ import { BaseModal, ModalService } from 'carbon-components-angular';
 export class ModalComponent extends BaseModal implements OnInit {
 
   helperText: string;
+  lg = 16;
 
   // step-1 model
   inputValue1 = '';

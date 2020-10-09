@@ -27,6 +27,8 @@ export class CaseComponent implements OnInit {
   isDataGrid = false;
   sortable = true;
   stickyHeader = false;
+  showSelectionColumn = false;
+  enableSingleSelect = false;
 
   // mock case data
   pageLength = 10;
