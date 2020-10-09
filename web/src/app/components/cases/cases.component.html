@@ -38,7 +38,8 @@
                         [enableSingleSelect]="enableSingleSelect"
                         [showSelectionColumn]="showSelectionColumn"
                         [striped]="striped"
-                        [isDataGrid]="isDataGrid">
+                        [isDataGrid]="isDataGrid"
+                        (sort)="sortColumn($event)">
                     </ibm-table>
                     <ibm-pagination
                         [model]="model"
