@@ -1,6 +1,11 @@
 import { TemplateRef, Component, ViewChild, OnInit, Input } from '@angular/core';
 import { CaseService } from './cases.service';
-import { TableModel, TableItem, TableHeaderItem, ModalService } from 'carbon-components-angular';
+import { Table,
+         TableModel,
+         TableItem,
+         TableHeaderItem,
+         ModalService
+       } from 'carbon-components-angular';
 import { ModalComponent } from '../modal/modal.component';
 import { Observable, Subject } from 'rxjs';
 
@@ -13,14 +18,19 @@ export class CaseComponent implements OnInit {
   @ViewChild('overflowMenuItemTemplate', { static: true })
   protected overflowMenuItemTemplate: TemplateRef<any>;
   // table values
-  model = new TableModel();
+  model: TableModel;
+  skeletonModel = Table.skeletonModel(10,5);
+  skeleton = true;
   originalModelData;
   tableSize = 'md';
   striped = true;
   isDataGrid = false;
   sortable = true;
   stickyHeader = false;
-  skeleton = false;
+
+  // mock case data
+  pageLength = 10;
+  totalDataLength = 105;
 
   // modal values
   chargesModalForm = {
@@ -41,46 +51,60 @@ export class CaseComponent implements OnInit {
   constructor(private caseService: CaseService, protected modalService: ModalService) {}
 
   selectPage(page) {
-    this.caseService.getPage(page);
-    //   .subscribe((data: Array<Array<any>>) => {
-    //     // set the data and update page
-    //     this.resultsModel.data = this.prepareData(data);
-    //     this.resultsModel.currentPage = page;
-    // });
+    this.caseService.getPage(page, this.pageLength)
+      .subscribe((data: Array<Array<any>>) => {
+        // set the data and update page
+        // let data = this.caseService.getPage(page, this.pageLength);
+         this.model.data = this.tableModelData(data);
+        this.model.currentPage = page;
+
+        // for search
+        this.originalModelData = this.model.data;
+
+        this.skeleton = false;
+    });
   }
 
   ngOnInit() {
-    this.model.data = [
-      [new TableItem({ data: 'han v US' }), new TableItem({ data: 'This case is about an armed robbery.' }),
-      new TableItem({ data: 1927 }), new TableItem({ data: 43 }),
-      new TableItem({ data: { id: '1' }, template: this.overflowMenuItemTemplate })],
-      [new TableItem({ data: 'Spivack v US' }), new TableItem({ data: 'This case is about an armed robbery.' }),
-      new TableItem({ data: 1927 }), new TableItem({ data: 43 }),
-      new TableItem({ data: { id: '2' }, template: this.overflowMenuItemTemplate })],
-      [new TableItem({ data: 'Spivack v US' }), new TableItem({ data: 'This case is about an armed robbery.' }),
-      new TableItem({ data: 1927 }), new TableItem({ data: 43 }),
-      new TableItem({ data: { id: '3' }, template: this.overflowMenuItemTemplate })],
-      [new TableItem({ data: 'Spivack v US' }), new TableItem({ data: 'This case is about an armed robbery.' }),
-      new TableItem({ data: 1927 }), new TableItem({ data: 43 }),
-      new TableItem({ data: { id: '4' }, template: this.overflowMenuItemTemplate })],
-      [new TableItem({ data: 'Spivack v US' }), new TableItem({ data: 'This case is about an armed robbery.' }),
-      new TableItem({ data: 1927 }), new TableItem({ data: 43 }),
-      new TableItem({ data: { id: '5' }, template: this.overflowMenuItemTemplate })],
-      [new TableItem({ data: 'Spivack v US' }), new TableItem({ data: 'This case is about an armed robbery.' }),
-      new TableItem({ data: 1927 }), new TableItem({ data: 43 }),
-      new TableItem({ data: { id: '6' }, template: this.overflowMenuItemTemplate })],
-      [new TableItem({ data: 'Spivack v US' }), new TableItem({ data: 'This case is about an armed robbery.' }),
-      new TableItem({ data: 1927 }), new TableItem({ data: 43 }),
-      new TableItem({ data: { id: '7' }, template: this.overflowMenuItemTemplate })],
-    ];
-    this.model.header = [
+    this.model = new TableModel();
+    this.model.header = this.tableModelHeader();
+    this.model.pageLength = this.pageLength;
+    this.model.totalDataLength = this.totalDataLength;
+    this.selectPage(1);
+  }
+
+  tableModelData(data) {
+    let modelData = []
+    for (let i = 0; i < data.length; i++) {
+      let caseName = data[i][0];
+      let caseDesc = data[i][1];
+      let caseDocCount = data[i][2];
+      let caseInsightsCount = data[i][3];
+      let caseId = data[i][4];
+      let row = [
+        new TableItem({data: caseName}),
+        new TableItem({data: caseDesc}),
+        new TableItem({data: caseDocCount}),
+        new TableItem({data: caseInsightsCount}),
+        new TableItem({data: {id: caseId}, template: this.overflowMenuItemTemplate})
+      ];
+
+      modelData.push(row);
+    }
+
+    return modelData;
+  }
+
+  tableModelHeader() {
+    let header = [
       new TableHeaderItem({ data: 'Case name' }),
       new TableHeaderItem({ data: 'Case description' }),
       new TableHeaderItem({ data: '# of document' }),
       new TableHeaderItem({ data: '# of insights' }),
       new TableHeaderItem({ data: '' })
     ];
-    this.originalModelData = this.model.data;
+
+    return header;
   }
 
   onRowClick(index: number) {
