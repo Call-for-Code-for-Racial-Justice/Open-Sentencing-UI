@@ -10,5 +10,5 @@ COPY tsconfig.app.json ./tsconfig.app.json
 COPY src ./src
 RUN npm run build
 FROM nginx:alpine
-COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
+#COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=client /app/dist/client /usr/share/nginx/html

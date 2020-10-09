@@ -10,6 +10,7 @@ export class HeaderComponent implements OnInit {
 
   title = 'Defender';
   isCurrentPage = true;
+  hasHamburger = false;
 
   @Input() isLoggedIn;
   @Input() user;
@@ -27,4 +28,7 @@ export class HeaderComponent implements OnInit {
     return;
   }
 
+  expanded(value) {
+    // TODO: porcess hamburger event here
+  }
 }
