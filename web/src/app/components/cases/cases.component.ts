@@ -132,4 +132,12 @@ export class CaseComponent implements OnInit {
       this.model.data = this.originalModelData;
     }
   }
+
+  sortColumn(index) {
+    // enable sorting for the first 4 columns only
+    if (index <= 3) {
+      this.model.header[index].ascending = !this.model.header[index].ascending
+      this.model.sort(index);
+    }
+  }
 }
