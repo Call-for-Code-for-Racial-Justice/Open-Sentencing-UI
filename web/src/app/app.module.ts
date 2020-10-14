@@ -43,6 +43,7 @@ import { AuthenticatedUserGuard } from './guards/authenticate-user.guard';
 import { EmbraceComponent } from './components/embrace/embrace.component';
 import { CaseComponent } from './components/cases/cases.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { AuthCallbackComponent } from './components/auth-callback/auth-callback.component';
 
 export function tokenGetter() {
   return localStorage.getItem('user_token');
@@ -59,7 +60,8 @@ export function tokenGetter() {
     LogoutComponent,
     EmbraceComponent,
     CaseComponent,
-    ModalComponent
+    ModalComponent,
+    AuthCallbackComponent
   ],
   imports: [
     BrowserModule,

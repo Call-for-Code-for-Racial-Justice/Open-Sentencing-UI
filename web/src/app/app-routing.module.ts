@@ -4,16 +4,17 @@ import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
-// import { AuthenticatedUserGuard } from './guards/authenticate-user.guard';
+import { AuthenticatedUserGuard } from './guards/authenticate-user.guard';
 import { EmbraceComponent } from './components/embrace/embrace.component';
 import { CaseComponent } from './components/cases/cases.component';
+import { AuthCallbackComponent } from './components/auth-callback/auth-callback.component';
 
 
 const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    // canActivate: [AuthenticatedUserGuard],
+    canActivate: [AuthenticatedUserGuard],
     children: [
       { path: '', redirectTo: 'cases', pathMatch: 'full' },
       { path: 'cases', component: CaseComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
+  { path: 'auth-callback', component: AuthCallbackComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
