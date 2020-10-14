@@ -4,7 +4,7 @@ import { BaseModal, ModalService } from 'carbon-components-angular';
 @Component({
   selector: 'app-sample-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
+  styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent extends BaseModal implements OnInit {
   helperText: string;
