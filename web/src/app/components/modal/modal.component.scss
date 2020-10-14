@@ -2,12 +2,14 @@
     margin-bottom: 30px;
 }
 
-.progress-indicator-horizontal- {
-    height: 44px !important;
-    width: 630px !important;
+.bx--progress-line {
+    width: 15rem !important;
 }
 
-.section-state-progress-indicat {
-    height: 44px !important;
-    width: 210px !important;
+.bx--progress-step {
+    width: 15rem !important;
+}
+
+.bx--progress-label {
+    overflow: visible !important;
 }

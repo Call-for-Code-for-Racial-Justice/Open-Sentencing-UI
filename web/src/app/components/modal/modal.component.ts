@@ -7,38 +7,53 @@ import { BaseModal, ModalService } from 'carbon-components-angular';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent extends BaseModal implements OnInit {
-
   helperText: string;
-  lg = 16;
+  // dummy charges record
+  charges = [
+    'Second degree armed assault',
+    'Charge1',
+    'Charge2',
+    'Charge3',
+    'Charge4'
+  ];
+ filterCharge = [];
 
   // step-1 model
   inputValue1 = '';
   inputValue2 = '';
   inputValue3 = '';
+  textForButton = 'Next: Case details';
+  disableValidForm = true;
 
   // progress indicator
+  current;
+  stepCounter = 'First';
   steps = [];
   defaultSteps = [
-    {
-      text: 'Case details',
-      state: ['incomplete'],
-      tooltip: { content: 'Overflow tooltip content.', trigger: 'click', placement: 'bottom' }
-    },
-    {
-      text: 'Defendant background',
-      state: ['incomplete'],
-      tooltip: { content: 'Overflow tooltip content.', trigger: 'click', placement: 'bottom' }
-    }, {
-      text: 'Upload case documents',
-      state: [],
-      tooltip: { content: 'Overflow tooltip content.', trigger: 'click', placement: 'bottom' }
-    }];
-    orientation = 'horizontal';
-    current = 0;
+      {
+        text: 'Defendant background',
+        state: ['incomplete']
+      },
+      {
+        text: 'Case details',
+        state: ['incomplete']
+      }
+    ];
 
-    // dummy charges record
-    charges = ['Second degree armed assault', 'Charge1', 'Charge2', 'Charge3', 'Charge4'];
-    filterCharge = [];
+  showProgress() {
+    this.steps = Array.from(this.defaultSteps);
+    switch (this.stepCounter) {
+      case 'First':
+        this.current = 0;
+        break;
+      case 'Second':
+        this.current = 1;
+        break;
+      default:
+        this.current = 0;
+        break;
+    }
+  }
 
   constructor(
     @Inject('modalText') public modalText,
@@ -48,7 +63,7 @@ export class ModalComponent extends BaseModal implements OnInit {
     super();
   }
   ngOnInit() {
-
+    this.showProgress();
   }
 
   onChange() {
@@ -62,6 +77,9 @@ export class ModalComponent extends BaseModal implements OnInit {
   }
 
   goNextOrSave() {
-    alert('here');
+    this.textForButton = 'Finish';
+    this.disableValidForm = true;
+    this.stepCounter = 'Second';
+    this.showProgress();
   }
 }
