@@ -1,14 +1,14 @@
-<ibm-modal [size]="lg" (overlaySelected)="closeModal()">
+<ibm-modal [size]="md" (overlaySelected)="closeModal()">
     <ibm-modal-header (closeSelect)="closeModal()">
         <h4 ibmModalHeaderHeading>{{modalText}}</h4>
     </ibm-modal-header>
     <section ibmModalContent hasForm="true" class="bx--modal-content">
         <div ibmCol>
             <div style="display: flex;">
-                <ibm-progress-indicator [steps]="steps" [current]="current"></ibm-progress-indicator>
+                <ibm-progress-indicator class="bx--progress-line; bx--progress-step; bx--progress-label" [steps]="steps" [current]="current"></ibm-progress-indicator>
             </div>
         </div>
-        <div>
+        <div *ngIf="stepCounter === 'First'">
             <ibm-label class="modal-text">
                 Case name
                 <input ibmText [(ngModel)]="inputValue1">
@@ -29,13 +29,16 @@
                 <ibm-tag-filter type="blue" closeButtonLabel="Clear" *ngFor="let x of filterCharge">{{x}}</ibm-tag-filter>
             </div>
         </div>
+        <div *ngIf="stepCounter === 'Second'">
+            test
+        </div>
     </section>
     <ibm-modal-footer>
-        <button class="bx--btn bx--btn--secondary " (click)="closeModal() ">
+        <button class="bx--btn bx--btn--secondary" (click)="closeModal() ">
           Cancel
         </button>
-        <button class="bx--btn bx--btn--primary " modal-primary-focus (click)="goNextOrSave() ">
-          Next: Defendant background
+        <button class="bx--btn bx--btn--primary" modal-primary-focus (click)="goNextOrSave() ">
+          {{textForButton}}
         </button>
     </ibm-modal-footer>
 </ibm-modal>

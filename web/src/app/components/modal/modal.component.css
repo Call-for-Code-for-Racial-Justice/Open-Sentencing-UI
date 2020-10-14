@@ -1,0 +1,15 @@
+.modal-text {
+    margin-bottom: 30px;
+}
+
+.bx--progress-line {
+    width: 15rem !important;
+}
+
+.bx--progress-step {
+    width: 15rem !important;
+}
+
+.bx--progress-label {
+    overflow: visible !important;
+}
