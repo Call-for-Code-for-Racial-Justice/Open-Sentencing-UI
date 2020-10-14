@@ -22,19 +22,18 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-nodejs 8.9.4 or above
-angular 8.3.29
-Register IBM Single Sign-On service for user authentication
+1. nodejs 8.9.4 or above
+1. angular 8.3.29
+1. Register IBM Single Sign-On service for user authentication
 
 ### Installing
 
-Clone or download the repo
-Change directory to outcarcerate-ui/web
-npm install
+1. Clone or download the repo
+1. Change directory to outcarcerate-ui/web
+1. npm install
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
 Run Following Commands:
  - ng test
 
