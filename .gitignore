@@ -159,6 +159,7 @@ dmypy.json
 npm-debug.log*
 testem.log
 /web/typings
+/web/src/app/configurations/oidcAuthenticationConfiguration.ts
 
 # e2e
 /web/e2e/*.js

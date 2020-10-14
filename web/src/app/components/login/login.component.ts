@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginService } from './login.service';
 import { environment } from '../../../environments/environment';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -11,23 +11,17 @@ import { environment } from '../../../environments/environment';
 export class LoginComponent implements OnInit {
   returnRoute: string;
 
-  constructor(private route: ActivatedRoute, private router: Router, private loginService: LoginService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthenticationService) { }
 
   ngOnInit() {
     this.returnRoute = this.route.snapshot.queryParams.returnRoute;
   }
 
   login() {
-    this.redirectToLogin();
-  }
-
-  redirectToLogin() {
-    let logInRedirectRoute = `${environment.defaultUIPath}/api/loginWithRedirect?returnRequestURL=/home`;
-
     if (this.returnRoute) {
-      logInRedirectRoute += '&appReturnRoute=' + this.returnRoute;
+      this.authService.setOriginalUrl(this.returnRoute);
     }
-    this.loginService.loginWithRedirect(logInRedirectRoute);
-  }
 
+    this.authService.startAuthentication();
+  }
 }

@@ -19,7 +19,7 @@ export class AuthenticatedUserGuard implements CanActivate {
   ): Observable<boolean> | Promise<boolean> | boolean {
     if (null !== this.authenticationService.getTokenForProfile()) {
       const userToken = this.authenticationService.getTokenForProfile();
-      if (!this.jwtHelper.isTokenExpired(userToken.token)) {
+      if (this.authenticationService.isLoggedIn()) {
         return true;
       } else {
         this.authenticationService.clearTokenForProfile();
