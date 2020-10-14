@@ -3,11 +3,7 @@
         <h4 ibmModalHeaderHeading>{{modalText}}</h4>
     </ibm-modal-header>
     <section ibmModalContent hasForm="true" class="bx--modal-content">
-        <div ibmCol>
-            <div style="display: flex;">
-                <ibm-progress-indicator class="bx--progress-line; bx--progress-step; bx--progress-label" [steps]="steps" [current]="current"></ibm-progress-indicator>
-            </div>
-        </div>
+        <ibm-progress-indicator class="bx--progress-line; bx--progress-step; bx--progress-label" [steps]="steps" [current]="current"></ibm-progress-indicator>
         <div *ngIf="stepCounter === 'First'">
             <ibm-label class="modal-text">
                 Case name

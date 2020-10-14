@@ -32,14 +32,19 @@
 }
 
 //progress indicator styling
+.bx--progress {
+    width: 100% !important;
+}
+
 .bx--progress-line {
-    width: 15rem !important;
+    width: inherit !important;
 }
 
 .bx--progress-step {
-    width: 15rem !important;
+    width: inherit !important;
 }
 
 .bx--progress-label {
     overflow: visible !important;
+    max-width: inherit;
 }
