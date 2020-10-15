@@ -30,20 +30,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterContentChecked  {
       });
     this.appReturnRoute = this.route.snapshot.queryParams.appReturnRoute;
     this.userToken = this.authenticationService.getTokenForProfile();
-    if (null === this.userToken) {
-      this.authenticationService.startAuthentication().then(async () => {
-        this.userToken = this.authenticationService.getTokenForProfile();
-        if (!this.userToken) {
-          return;
-        }
-        this.user = `${this.userToken.user.firstName} ${this.userToken.user.lastName}`;
-        if (this.appReturnRoute) {
-          this.router.navigateByUrl(this.appReturnRoute);
-        } else {
-          this.router.navigateByUrl('/home');
-        }
-      });
-    } else {
+
+    if (null !== this.userToken) {
       this.user = `${this.userToken.user.firstName} ${this.userToken.user.lastName}`;
     }
   }

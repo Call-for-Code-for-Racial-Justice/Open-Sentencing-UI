@@ -84,10 +84,8 @@ export class CaseComponent implements OnInit {
       let caseInsightsCount = data[i][3];
       let caseId = data[i][4];
       let row = [
-        new TableItem({data: caseName}),
+        new TableItem({data: caseId}),
         new TableItem({data: caseDesc}),
-        new TableItem({data: caseDocCount}),
-        new TableItem({data: caseInsightsCount}),
         new TableItem({data: {id: caseId}, template: this.overflowMenuItemTemplate})
       ];
 
@@ -99,10 +97,8 @@ export class CaseComponent implements OnInit {
 
   tableModelHeader() {
     let header = [
-      new TableHeaderItem({ data: 'Case name' }),
-      new TableHeaderItem({ data: 'Case description' }),
-      new TableHeaderItem({ data: '# of document' }),
-      new TableHeaderItem({ data: '# of insights' }),
+      new TableHeaderItem({ data: 'Case ID' }),
+      new TableHeaderItem({ data: 'Charge' }),
       new TableHeaderItem({ data: '' })
     ];
 

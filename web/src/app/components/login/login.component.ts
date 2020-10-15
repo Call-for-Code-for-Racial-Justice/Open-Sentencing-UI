@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { AuthenticationService } from '../../services/authentication.service';
+import { GridModule } from 'carbon-components-angular';
 
 @Component({
   selector: 'app-login',
@@ -23,5 +24,10 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.startAuthentication();
+  }
+
+  signup() {
+    const signupUrl = 'https://www.ibm.com/account/us-en/signup/register.html';
+    window.location.replace(signupUrl);
   }
 }

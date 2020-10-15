@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  title = 'Defender';
+  title = 'Open Sentencing';
   isCurrentPage = true;
   hasHamburger = false;
 
