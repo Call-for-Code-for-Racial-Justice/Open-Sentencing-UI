@@ -1,8 +1,7 @@
 <ibm-header name="{{title}}" [route]="['cases']">
     <ibm-hamburger *ngIf="hasHamburger" (click)="expanded($event)"></ibm-hamburger>
     <ibm-header-navigation>
-        <ibm-header-item [route]="['']">Home</ibm-header-item>
-        <ibm-header-item [route]="['home/cases']">Cases</ibm-header-item>
-        <ibm-header-item [route]="['home/embrace']">Bias Detection</ibm-header-item>
+        <ibm-header-item [route]="['cases']" *ngIf="isLoggedIn">Cases</ibm-header-item>
+        <ibm-header-item [route]="['logout']" *ngIf="isLoggedIn">Log Out</ibm-header-item>
     </ibm-header-navigation>
 </ibm-header>

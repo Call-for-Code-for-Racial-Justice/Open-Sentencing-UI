@@ -26,7 +26,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/images/IBM.png"
+              "src/images/IBM.png",
+              "src/images/opensentencing.png"
             ],
             "styles": [
               "src/styles.scss",

@@ -68,6 +68,7 @@ export class AuthenticationService {
   clearTokenForProfile() {
     this.token = null;
     this._isLoggedIn.next(false);
+    this.user = null;
     localStorage.clear();
   }
 
