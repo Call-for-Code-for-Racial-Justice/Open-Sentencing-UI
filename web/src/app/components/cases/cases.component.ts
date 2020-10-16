@@ -7,7 +7,7 @@ import { Table,
          ModalService
        } from 'carbon-components-angular';
 import { ModalComponent } from '../modal/modal.component';
-import { Observable, Subject } from 'rxjs';
+// import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-cases',
@@ -19,7 +19,7 @@ export class CaseComponent implements OnInit {
   protected overflowMenuItemTemplate: TemplateRef<any>;
   // table values
   model: TableModel;
-  skeletonModel = Table.skeletonModel(10,5);
+  skeletonModel = Table.skeletonModel(10, 5);
   skeleton = true;
   originalModelData;
   tableSize = 'md';
@@ -35,20 +35,7 @@ export class CaseComponent implements OnInit {
   totalDataLength = 105;
 
   // modal values
-  chargesModalForm = {
-    caseName: 'test',
-    caseDescription: 'test',
-    charges: 'test'
-  };
-  defendantBackgroundForm = {
-    defendantName: 'test',
-    defendantRace: 'test',
-    defandantCharges: 'test'
-  };
   showCreateCase: boolean;
-
-  @Input() modalText = 'Add a new case';
-  @Input() modalSize = 'lg';
 
   constructor(private caseService: CaseService, protected modalService: ModalService) {}
 
@@ -57,12 +44,11 @@ export class CaseComponent implements OnInit {
       .subscribe((data: Array<Array<any>>) => {
         // set the data and update page
         // let data = this.caseService.getPage(page, this.pageLength);
-         this.model.data = this.tableModelData(data);
+        this.model.data = this.tableModelData(data);
         this.model.currentPage = page;
 
         // for search
         this.originalModelData = this.model.data;
-
         this.skeleton = false;
     });
   }
@@ -76,18 +62,15 @@ export class CaseComponent implements OnInit {
   }
 
   tableModelData(data) {
-    let modelData = []
-    for (let i = 0; i < data.length; i++) {
-      let caseName = data[i][0];
-      let caseDesc = data[i][1];
-      let caseDocCount = data[i][2];
-      let caseInsightsCount = data[i][3];
-      let caseId = data[i][4];
-      let row = [
-        new TableItem({data: caseName}),
-        new TableItem({data: caseDesc}),
-        new TableItem({data: caseDocCount}),
-        new TableItem({data: caseInsightsCount}),
+    const modelData = [];
+    for (const i of data) {
+      const temp = i.splice(',');
+      const caseIdentifier = temp[0];
+      const charge = temp[1];
+      const caseId = temp[2];
+      const row = [
+        new TableItem({data: caseIdentifier}),
+        new TableItem({data: charge}),
         new TableItem({data: {id: caseId}, template: this.overflowMenuItemTemplate})
       ];
 
@@ -98,11 +81,9 @@ export class CaseComponent implements OnInit {
   }
 
   tableModelHeader() {
-    let header = [
-      new TableHeaderItem({ data: 'Case name' }),
-      new TableHeaderItem({ data: 'Case description' }),
-      new TableHeaderItem({ data: '# of document' }),
-      new TableHeaderItem({ data: '# of insights' }),
+    const header = [
+      new TableHeaderItem({ data: 'Case ID' }),
+      new TableHeaderItem({ data: 'Charge' }),
       new TableHeaderItem({ data: '' })
     ];
 
@@ -115,11 +96,7 @@ export class CaseComponent implements OnInit {
 
   openCaseModal() {
     this.modalService.create({
-      component: ModalComponent,
-      inputs: {
-        modalText: this.modalText,
-        size: this.modalSize
-      }
+      component: ModalComponent
     });
   }
 
@@ -129,7 +106,7 @@ export class CaseComponent implements OnInit {
       this.model.data = this.model.data.filter(
         (item) => item[0].data.toLowerCase().includes(searchValue)
                || item[1].data.toLowerCase().includes(searchValue)
-      )
+      );
     } else {
       this.model.data = this.originalModelData;
     }
@@ -138,7 +115,7 @@ export class CaseComponent implements OnInit {
   sortColumn(index) {
     // enable sorting for the first 4 columns only
     if (index <= 3) {
-      this.model.header[index].ascending = !this.model.header[index].ascending
+      this.model.header[index].ascending = !this.model.header[index].ascending;
       this.model.sort(index);
     }
   }
