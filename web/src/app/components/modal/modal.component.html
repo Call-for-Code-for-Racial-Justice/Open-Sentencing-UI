@@ -1,33 +1,77 @@
-<ibm-modal [size]="md" (overlaySelected)="closeModal()">
-    <ibm-modal-header (closeSelect)="closeModal()">
+<ibm-modal [size]="lg" (overlaySelected)="closeModal()">
+    <ibm-modal-header (closeSelect)="closeModal()" style="padding-bottom: 10px;">
         <h4 ibmModalHeaderHeading>{{modalText}}</h4>
     </ibm-modal-header>
-    <section ibmModalContent hasForm="true" class="bx--modal-content">
+    <section ibmModalContent hasForm="true" class="bx--modal-content" style="padding-top: 10px; padding-bottom: 2px; padding-right: 16px;">
         <ibm-progress-indicator class="bx--progress-line; bx--progress-step; bx--progress-label" [steps]="steps" [current]="current"></ibm-progress-indicator>
-        <div *ngIf="stepCounter === 'First'">
-            <ibm-label class="modal-text">
-                Case name
-                <input ibmText [(ngModel)]="inputValue1">
-            </ibm-label>
-            <div class="display: flex; justify-content: space-between; modal-text">
-                <ibm-label class="float-right" *ngIf="inputValue2">{{inputValue2.length}}/500</ibm-label>
-                <ibm-label>
-                    Case description
-                    <textarea ibmTextArea maxlength="500" [(ngModel)]="inputValue2"></textarea>
+        <div *ngIf="!isValid" class="alert alert-danger">
+            {{message}}
+        </div>
+        <div *ngIf="isValid && message !== undefined" class="alert alert-success">
+            {{message}}
+        </div>
+        <form [formGroup]="defendantAndCaseForm" style="padding-top: 10px;">
+            <div class="form-group" *ngIf="stepCounter === 'First'">
+                <ibm-label class="modal-text">
+                    Defendant name
+                    <input ibmText class="form-control" formControlName="defendantname" id="defendantname" name="defendantname" aria-describedby="defendantnameHelp" placeholder="Defendant name">
                 </ibm-label>
+                <div class="float-left" style="margin-right: 4rem; width: 45%;">
+                    Defendant race
+                    <ibm-select formControlName="defendantrace" id="defendantrace" name="defendantrace" aria-describedby="defendantraceHelp" placeholder="Defendant race" style="width:inherit">
+                        <option value="default" disabled selected hidden>Choose an option</option>
+                        <option value="white">White/Caucasian</option>
+                        <option value="black">Black/African American</option>
+                        <option value="hispanic">Native American</option>
+                        <option value="americanIndian">Hispanic/Latino</option>
+                        <option value="asian">Asian</option>
+                        <option value="other">other</option>
+                    </ibm-select>
+                </div>
+                <div>
+                    Defendant gender
+                    <ibm-select formControlName="defendantgender" id="defendantgender" name="defendantgender" aria-describedby="defendantgenderHelp" placeholder="Defendant gender">
+                        <option value="default" disabled selected hidden>Choose an option</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                    </ibm-select>
+                </div>
             </div>
-            <!-- <span class="float-right ">{{ inputValue.length }}/500</span> -->
-            <ibm-label class="modal-text">
-                Charges
-                <input ibmText [(ngModel)]="inputValue3" (change)="onChange()">
-            </ibm-label>
-            <div *ngIf="filterCharge.length > 0">
-                <ibm-tag-filter type="blue" closeButtonLabel="Clear" *ngFor="let x of filterCharge">{{x}}</ibm-tag-filter>
+            <div class="form-group" *ngIf="stepCounter === 'Second'">
+                <div class="modal-text">
+                    <ibm-combo-box formControlName="chargedescription" appendInline="true" [items]="filterCharge" (keyup)="mySearch($event)" (selected)="selected($event)">
+                        <ibm-dropdown-list></ibm-dropdown-list>
+                    </ibm-combo-box>
+                    <ibm-tag-filter type="blue" closeButtonLabel="Clear" *ngFor="let x of selectedItemTag">{{x.content}}</ibm-tag-filter>
+                </div>
+                <fieldset class="bx--fieldset">
+                    <div class="form-group">
+                        <div class="float-left" style="margin-right: 4rem;">
+                            <legend class="bx--label">Is the charge drug related?</legend>
+                        </div>
+                        <div>
+                            <legend class="bx--label">
+                                For guidance, refer to the
+                                <a class="bx--label" href="https://www.ussc.gov/guidelines/2018-guidelines-manual/2018-chapter-2-d" target="_blank" ibmLink>U.S. Sentencing Commisions guidelines</a>.
+                            </legend>
+                        </div>
+                    </div>
+                    <div class="form-group" style="width: 10px;">
+                        <div class="float-left">
+                            <ibm-radio-group aria-label="radiogroup" formControlName="radioGroup" (change)="radioSelection($event)">
+                                <ibm-radio value="yes">
+                                    Yes
+                                </ibm-radio>
+                                <ibm-radio value="no">
+                                    No
+                                </ibm-radio>
+                            </ibm-radio-group>
+                        </div>
+                    </div>
+                </fieldset>
             </div>
-        </div>
-        <div *ngIf="stepCounter === 'Second'">
-            test
-        </div>
+        </form>
     </section>
     <ibm-modal-footer>
         <button class="bx--btn bx--btn--secondary" (click)="closeModal() ">
