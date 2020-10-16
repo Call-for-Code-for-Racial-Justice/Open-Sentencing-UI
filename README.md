@@ -1,8 +1,8 @@
-# Outcarcerate UI
+# Open Sentencing UI
 
 [![License](https://img.shields.io/badge/License-Apache2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) [![Slack](https://img.shields.io/badge/Join-Slack-blue)](https://callforcode.org/slack) [![Website](https://img.shields.io/badge/View-Website-blue)](https://code-and-response.github.io/Project-Sample/)
 
-This repo is the UI part of the [outcarcerate](https://github.com/embrace-call-for-code/outcarcerate-docs/blob/master/readme.md) project.
+This repo is the UI part of the [Open Sentencing](https://github.com/Call-for-Code-for-Racial-Justice/Open-Sentencing/blob/master/readme.md) project.
 
 ## Contents
 
@@ -29,7 +29,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installing
 
 1. Clone or download the repo
-1. Change directory to outcarcerate-ui/web
+1. Change directory to open-sentencing-ui/web
 1. npm install
 
 ## Running the tests
@@ -38,7 +38,7 @@ Run Following Commands:
  - ng test
 
 ### To Run the application
- - cd outcarcerate-ui/web/
+ - cd open-sentencing-ui/web/
  - docker build -t `<image name>` .
  - docker run --rm --name `<image name>` -p 8080:8080 `<container name>`
  
