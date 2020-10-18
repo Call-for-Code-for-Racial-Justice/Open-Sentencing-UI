@@ -1,0 +1,31 @@
+# Default values for template-node-typescript.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+global: {}
+
+replicaCount: 1
+logLevel: "debug"
+
+image:
+  repository: replace
+  tag: replace
+  pullPolicy: IfNotPresent
+  port: 9080
+
+service:
+  type: ClusterIP
+  port: 8080
+
+serviceAccount:
+  create: false
+
+route:
+  enabled: true
+
+ingress:
+  enabled: false
+
+vcsInfo:
+  repoUrl: nil
+  branch: nil
+  connectsTo: nil
