@@ -2,6 +2,7 @@ FROM node:10-alpine as builder
 RUN mkdir /app
 WORKDIR /app
 COPY web /app
+RUN npx npm-force-resolutions
 RUN npm install
 RUN npm run build
 
