@@ -138,6 +138,15 @@ export class ModalComponent extends BaseModal implements OnInit {
     'Violation Order Of Protection'
   ];
 
+  criminalHistoryCategory = [
+    'Category I',
+    'Category II',
+    'Category III',
+    'Category IV',
+    'Category V',
+    'Category VI'
+  ];
+
   // step-1 model
   textForButton = 'Next: Case details';
 

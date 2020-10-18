@@ -87,9 +87,7 @@
                         Criminal history category
                         <ibm-select formControlName="crimialHistoryCategory" id="crimialHistoryCategory" name="crimialHistoryCategory" aria-describedby="crimialHistoryCategoryHelp" placeholder="Select an option">
                             <option value="default" disabled selected hidden>Choose an option</option>
-                            <option value="female">Female</option>
-                            <option value="male">Male</option>
-                            <option value="other">Other</option>
+                            <option *ngFor="let item of criminalHistoryCategory" value="item">{{item}}</option>
                         </ibm-select>
                     </div>
                 </div>
