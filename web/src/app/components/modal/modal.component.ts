@@ -15,6 +15,7 @@ export class ModalComponent extends BaseModal implements OnInit {
   isValid = true;
   helperText;
   message;
+  modalSize;
 
   // combo box
   selectedItems = [];
@@ -181,6 +182,7 @@ export class ModalComponent extends BaseModal implements OnInit {
 
   // init function
   ngOnInit() {
+    this.modalSize = 'lg';
     this.showProgress();
   }
 
@@ -192,8 +194,8 @@ export class ModalComponent extends BaseModal implements OnInit {
     this.selectedItemTag = this.tempTagFilter;
   }
 
-  Clear() {
-    alert('here');
+  onClose(selection) {
+    alert(selection);
   }
 
   // charge filtering from available charges
