@@ -1,8 +1,12 @@
-# Open Sentencing UI
+# Open Sentencing User Interface (UI)
 
 [![License](https://img.shields.io/badge/License-Apache2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) [![Slack](https://img.shields.io/badge/Join-Slack-blue)](https://callforcode.org/slack) [![Website](https://img.shields.io/badge/View-Website-blue)](https://code-and-response.github.io/Project-Sample/)
 
-This repo is the UI part of the [Open Sentencing](https://github.com/Call-for-Code-for-Racial-Justice/Open-Sentencing/blob/master/readme.md) project.
+The User Interface (UI) provided is meant to allow public defenders or others an ability to easily review contents of a case to determine when bias was detected. Since public defenders are so busy we wanted this to be an item that could be utilized very quickly and easily. No knowledge of the programming behind the tool is needed for an end user.
+
+The Open Sentencing UI is part of the overall Open Sentencing tool.  
+Check out the main GitHub repo for more information: 
+Call for Code for Racial Justice - Open Sentencing:  https://github.com/Call-for-Code-for-Racial-Justice/Open-Sentencing.
 
 ## Contents
 
@@ -72,6 +76,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 This project is licensed under the Apache 2 License - see the [LICENSE](LICENSE) file for details
 
-## Acknowledgments
-
-* Based on [Billie Thompson's README template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2).
+## How to Help  *We'd love your involvement!*
+Please visit our main repo here: https://github.com/Call-for-Code-for-Racial-Justice/Open-Sentencing.  More detailed areas on where we need assistance are provided.
+If you would like to [Help](https://developer.ibm.com/callforcode/racial-justice/) with the cause to use technology to battle racism, we would love for you to get involved!  Please submit updates to us for review. 
+Together we can use technology to fight systemic racism!
