@@ -11,7 +11,7 @@ export class AuthCallbackComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
-  async ngOnInit():  Promise<void> {
+  async ngOnInit(): Promise<void> {
     await this.authenticationService.completeAuthentication();
     await this.authenticationService.setTokenForProfile();
 

@@ -8,7 +8,6 @@
 <div ibmGrid class="bx--grid--full-width landing-page">
     <div ibmRow class="landing-page__banner">
         <div ibmCol [columnNumbers]="{'lg': 16}">
-
             <h1 class="landing-page__heading">
                 Cases
             </h1>
@@ -20,32 +19,17 @@
                 <ibm-table-container>
                     <ibm-table-toolbar>
                         <ibm-table-toolbar-content>
-                            <ibm-table-toolbar-search
-                              [expandable]="true"
-                              placeholder="Search"
-                              (valueChange)="filterModelData($event)">
+                            <ibm-table-toolbar-search [expandable]="true" placeholder="Search" (valueChange)="filterModelData($event)">
                             </ibm-table-toolbar-search>
                             <button ibmButton="primary" size="sm" (click)="openCaseModal()">
                       Add a new case<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
                     </button>
                         </ibm-table-toolbar-content>
                     </ibm-table-toolbar>
-                    <ibm-table
-                        [stickyHeader]="stickyHeader"
-                        [size]="tableSize"
-                        [skeleton]="skeleton"
-                        [model]="skeleton ? skeletonModel: model"
-                        [enableSingleSelect]="enableSingleSelect"
-                        [showSelectionColumn]="showSelectionColumn"
-                        [striped]="striped"
-                        [isDataGrid]="isDataGrid"
+                    <ibm-table [stickyHeader]="stickyHeader" [size]="tableSize" [skeleton]="skeleton" [model]="skeleton ? skeletonModel: model" [enableSingleSelect]="enableSingleSelect" [showSelectionColumn]="showSelectionColumn" [striped]="striped" [isDataGrid]="isDataGrid"
                         (sort)="sortColumn($event)">
                     </ibm-table>
-                    <ibm-pagination
-                        [model]="model"
-                        [pageInputDisabled]="false"
-                        [itemsPerPageOptions]="[10,20,50]"
-                        (selectPage)="selectPage($event)">
+                    <ibm-pagination [model]="model" [pageInputDisabled]="false" [itemsPerPageOptions]="[10,20,50]" (selectPage)="selectPage($event)">
                     </ibm-pagination>
                 </ibm-table-container>
             </div>
@@ -56,7 +40,9 @@
     <div ibmRow class="landing-page__r3">
         <div ibmCol [columnNumbers]="{'md': 4, 'lg': 16}">
             <p class="disclaimer">
-              This site provides applications using data that has been modified for use from its original source, <a href="http://ida.ussc.gov">ida.ussc.gov</a>, an official website of the U.S. Sentencing Commission. The U.S. Sentencing Commission makes no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being used at one’s own risk.
+                This site provides applications using data that has been modified for use from its original source, <a href="http://ida.ussc.gov">ida.ussc.gov</a>, an official website of the U.S. Sentencing Commission. The U.S. Sentencing Commission makes
+                no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being
+                used at one’s own risk.
             </p>
         </div>
     </div>
