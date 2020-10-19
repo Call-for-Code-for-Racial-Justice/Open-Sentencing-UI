@@ -10,15 +10,22 @@ Call for Code for Racial Justice - Open Sentencing:  https://github.com/Call-for
 
 ## Contents
 
-1. [Getting started](#getting-started)
-1. [Running the tests](#running-the-tests)
-1. [Live demo](#live-demo)
-1. [Built with](#built-with)
-1. [Contributing](#contributing)
-1. [Versioning](#versioning)
-1. [Authors](#authors)
-1. [License](#license)
-1. [Acknowledgments](#acknowledgments)
+- [Open Sentencing User Interface (UI)](#open-sentencing-user-interface-ui)
+  - [Contents](#contents)
+  - [Getting started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installing](#installing)
+  - [Running the tests](#running-the-tests)
+    - [To Run the application](#to-run-the-application)
+    - [Break down into end to end tests](#break-down-into-end-to-end-tests)
+    - [And coding style tests](#and-coding-style-tests)
+  - [Live demo](#live-demo)
+  - [Built with](#built-with)
+  - [Contributing](#contributing)
+  - [Versioning](#versioning)
+  - [Authors](#authors)
+  - [License](#license)
+  - [How to Help  *We'd love your involvement!*](#how-to-help-wed-love-your-involvement)
 
 ## Getting started
 
@@ -26,8 +33,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-1. nodejs 8.9.4 or above
-1. angular 8.3.29
+1. nodejs 10 or above
+1. angular cli 8.3.29 `npm install -g @angular/cli@8.3.29`
 1. Register IBM Single Sign-On service for user authentication
 
 ### Installing
