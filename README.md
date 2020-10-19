@@ -19,7 +19,6 @@ Call for Code for Racial Justice - Open Sentencing:  https://github.com/Call-for
     - [To run the application](#to-run-the-application)
     - [Unit tests](#unit-tests)
     - [Coding style tests](#coding-style-tests)
-  - [Live demo](#live-demo)
   - [Built with](#built-with)
   - [Contributing](#contributing)
   - [Versioning](#versioning)
@@ -63,10 +62,6 @@ Run the Following command:
 Run the following command:
 - `ng lint`
 
-## Live demo
-
-You can find a running system to test [here](https://us-south.git.cloud.ibm.com/sirraman/Embrace2020).  You will need an IBM ID to use the app, but you can request a free IBM ID right from the login screen.  You do not need to be an IBM employee or customer.
-
 ## Built with
 
 * Angular
@@ -81,9 +76,10 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-Kandarp Thakar
-Xinzhan Lin
-David Nugent
+* Kandarp Thakar
+* Xinzhan Lin
+* David Nugent
+* Jean Carlos Ricardo Arruda
 
 ## License
 
