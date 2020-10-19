@@ -13,6 +13,7 @@ Call for Code for Racial Justice - Open Sentencing:  https://github.com/Call-for
 - [Open Sentencing User Interface (UI)](#open-sentencing-user-interface-ui)
   - [Contents](#contents)
   - [Getting started](#getting-started)
+    - [High-fidelity prototype](#high-fidelity-prototype)
     - [Prerequisites](#prerequisites)
     - [Installing](#installing)
   - [Running the tests](#running-the-tests)
@@ -29,6 +30,10 @@ Call for Code for Racial Justice - Open Sentencing:  https://github.com/Call-for
 ## Getting started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system. 
+
+### High-fidelity prototype
+
+The [Invision Prototype](https://ibm.invisionapp.com/share/Q5O0KIVUNE8#/screens) shows what we're currently implementing.
 
 ### Prerequisites
 
@@ -78,6 +83,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 * Kandarp Thakar
 * Xinzhan Lin
+* Max Veit
 * David Nugent
 * Jean Carlos Ricardo Arruda
 
