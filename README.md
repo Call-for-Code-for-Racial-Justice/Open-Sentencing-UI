@@ -73,7 +73,7 @@ You can find a running system to test [here](https://us-south.git.cloud.ibm.com/
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/Call-for-Code-for-Racial-Justice/Open-Sentencing/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
