@@ -17,9 +17,9 @@ export function getClientSettings(): UserManagerSettings {
 export class AuthenticationService {
   public token: UserToken = null;
   private _isLoggedIn = new BehaviorSubject<boolean>(false);
-  private readonly ORIGINAL_URL_COOKIE : string = "originalUrl";
+  private readonly ORIGINAL_URL_COOKIE: string = 'originalUrl';
   private userManager = new UserManager(getClientSettings());
-  private user : User = null;
+  private user: User = null;
 
   constructor() {
     this.initializeUser();
@@ -45,15 +45,15 @@ export class AuthenticationService {
   }
 
   async setTokenForProfile() {
-    const idToken = this.user.id_token
+    const idToken = this.user.id_token;
     const email =  this.user.profile.email;
     const firstName =  this.user.profile.given_name;
     const lastName  =  this.user.profile.family_name;
     const userToken: UserToken = {
-      'token': idToken,
-      'user': {
-        'id': '',
-        'emailAddress': email,
+      token: idToken,
+      user: {
+        id: '',
+        emailAddress: email,
         'firstName': firstName,
         'lastName': lastName
       }
@@ -86,7 +86,7 @@ export class AuthenticationService {
 
   /**
    * Validates if the user has been previously authenticated succesfully.
-   * 
+   *
    * @returns {boolean} true, if the user has been authenticated successfully  and if the user's session hasn't exipred yet,
    * otherwise false.
    */
@@ -96,7 +96,7 @@ export class AuthenticationService {
 
   /**
    * Returns the user's information.
-   * 
+   *
    * @returns {(Object | null)} An object with user's information only when it's being used id_token as response type, otherwise null
    * will be returned.
    */
@@ -106,8 +106,9 @@ export class AuthenticationService {
 
   /**
    * Returns authorization header value.
-   * 
-   * @returns {(string | null)} A string representation of authorization header value only when it's being used token as response type, otherwise null
+   *
+   * @returns {(string | null)} 
+   * A string representation of authorization header value only when it's being used token as response type, otherwise null
    * will be returned.
    */
   getAuthorizationHeaderValue(): string{
@@ -122,16 +123,17 @@ export class AuthenticationService {
   }
 
   /**
-   * Finishes the authentication process, this method must be called once IBMid redirects to the registered callback url, in order to save the user data.
+   * Finishes the authentication process,
+   * this method must be called once IBMid redirects to the registered callback url, in order to save the user data.
    */
-  async completeAuthentication(): Promise<void>{
+  async completeAuthentication(): Promise<void> {
     this.user = await this.userManager.signinRedirectCallback();
   }
 
   /**
    * This method is used to store the original url that the user requested before being redirected to IBMid login page, and 
    * navigate to it once authentication finishes.
-   * 
+   *
    * @param originalUrl The original endpoint that the user requested before being redirected to IBMid login page.
    */
   setOriginalUrl(originalUrl: string) {
