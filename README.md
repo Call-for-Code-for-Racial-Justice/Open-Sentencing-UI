@@ -16,9 +16,9 @@ Call for Code for Racial Justice - Open Sentencing:  https://github.com/Call-for
     - [Prerequisites](#prerequisites)
     - [Installing](#installing)
   - [Running the tests](#running-the-tests)
-    - [To Run the application](#to-run-the-application)
-    - [Break down into end to end tests](#break-down-into-end-to-end-tests)
-    - [And coding style tests](#and-coding-style-tests)
+    - [To run the application](#to-run-the-application)
+    - [Unit tests](#unit-tests)
+    - [Coding style tests](#coding-style-tests)
   - [Live demo](#live-demo)
   - [Built with](#built-with)
   - [Contributing](#contributing)
@@ -29,7 +29,7 @@ Call for Code for Racial Justice - Open Sentencing:  https://github.com/Call-for
 
 ## Getting started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system. 
 
 ### Prerequisites
 
@@ -40,30 +40,32 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installing
 
 1. Clone or download the repo
-1. Change directory to open-sentencing-ui/web
+1. Change directory to Open-Sentencing-UI/web
 1. npm install
 
 ## Running the tests
 
-Run Following Commands:
- - ng test
-
-### To Run the application
- - cd open-sentencing-ui/web/
- - docker build -t `<image name>` .
- - docker run --rm --name `<image name>` -p 8080:8080 `<container name>`
+### To run the application
+You can choose your own image name and tag, such as `os-ui:oct18`. The `.` at the end represents the location for the new image.  You can also choose your own container name.
+ - `docker build -t <image name> .`
+ - `docker run --rm --name <image name> -p 8080:8080 <container name>`
+example:
+ - `docker build -t os-demo:oct19 .`
+ - `docker run --rm --name os-ui -p 8080:8080 os-demo:oct19`
  
-### Break down into end to end tests
+### Unit tests
 
-TBD
+Run the Following command:
+ - `ng test`
 
-### And coding style tests
+### Coding style tests
 
-TBD
+Run the following command:
+- `ng lint`
 
 ## Live demo
 
-You can find a running system to test [here](https://us-south.git.cloud.ibm.com/sirraman/Embrace2020)
+You can find a running system to test [here](https://us-south.git.cloud.ibm.com/sirraman/Embrace2020).  You will need an IBM ID to use the app, but you can request a free IBM ID right from the login screen.  You do not need to be an IBM employee or customer.
 
 ## Built with
 
@@ -73,15 +75,21 @@ You can find a running system to test [here](https://us-south.git.cloud.ibm.com/
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
+We are enabling the Dependabot on this repo.
+
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
 ## Authors
 
+Kandarp Thakar
+Xinzhan Lin
+David Nugent
+
 ## License
 
-This project is licensed under the Apache 2 License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the Apache 2 License - see the [LICENSE](LICENSE) file for details.
 
 ## How to Help  *We'd love your involvement!*
 Please visit our main repo here: https://github.com/Call-for-Code-for-Racial-Justice/Open-Sentencing.  More detailed areas on where we need assistance are provided.
