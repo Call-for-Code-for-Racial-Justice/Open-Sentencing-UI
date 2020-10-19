@@ -75,8 +75,6 @@ You can find a running system to test [here](https://us-south.git.cloud.ibm.com/
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
-We are enabling the Dependabot on this repo.
-
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
