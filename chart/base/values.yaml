@@ -10,7 +10,7 @@ image:
   repository: replace
   tag: replace
   pullPolicy: IfNotPresent
-  port: 9080
+  port: 80
 
 service:
   type: ClusterIP

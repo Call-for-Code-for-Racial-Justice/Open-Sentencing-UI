@@ -46,14 +46,8 @@ spec:
             - name: http
               containerPort: {{ .Values.image.port }}
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
+          securityContext: 
+            runAsUser: 0
           env:
           - name: AGGREGATOR_URL
             value: {{ .Values.ui.aggregatorUrl }}
