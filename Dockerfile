@@ -9,4 +9,5 @@ RUN npm run build
 
 FROM nginx:alpine
 RUN apk -U upgrade
+COPY web/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder /app/dist/client /usr/share/nginx/html

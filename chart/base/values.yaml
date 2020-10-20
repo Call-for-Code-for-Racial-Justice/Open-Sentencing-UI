@@ -9,8 +9,8 @@ logLevel: "debug"
 image:
   repository: replace
   tag: replace
-  pullPolicy: IfNotPresent
-  port: 80
+  pullPolicy: Always
+  port: 8080
 
 service:
   type: ClusterIP
