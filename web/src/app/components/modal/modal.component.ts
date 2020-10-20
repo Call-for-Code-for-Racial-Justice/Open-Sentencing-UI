@@ -15,6 +15,7 @@ export class ModalComponent extends BaseModal implements OnInit {
   isValid = true;
   helperText;
   message;
+  modalSize;
 
   // combo box
   selectedItems = [];
@@ -155,6 +156,9 @@ export class ModalComponent extends BaseModal implements OnInit {
       }
     ];
 
+  // radio selection
+  enableRadioSelection = false;
+
   // new form initialization
   defendantAndCaseForm = new FormGroup({
     defendantname: new FormControl(),
@@ -162,7 +166,11 @@ export class ModalComponent extends BaseModal implements OnInit {
     chargedescription: new FormControl(),
     defendantrace: new FormControl(),
     defendantgender: new FormControl(),
-    radioGroup: new FormControl()
+    radioGroup: new FormControl(),
+    amountOfDrugPossessed: new FormControl(),
+    crimialHistoryCategory: new FormControl(),
+    estimatedSentence: new FormControl(),
+    givenSentence: new FormControl()
   });
 
   constructor(
@@ -174,6 +182,7 @@ export class ModalComponent extends BaseModal implements OnInit {
 
   // init function
   ngOnInit() {
+    this.modalSize = 'lg';
     this.showProgress();
   }
 
@@ -183,6 +192,10 @@ export class ModalComponent extends BaseModal implements OnInit {
       this.tempTagFilter.push(selection.item);
     }
     this.selectedItemTag = this.tempTagFilter;
+  }
+
+  onClose(selection) {
+    alert(selection);
   }
 
   // charge filtering from available charges
@@ -252,27 +265,34 @@ export class ModalComponent extends BaseModal implements OnInit {
 
   // radio selection
   radioSelection(selection) {
-    if (selection.val === 'yes') {
+    if (selection.value === 'yes') {
       // enable view
+      this.enableRadioSelection = true;
+    } else {
+      this.enableRadioSelection = false;
     }
   }
 
   // form validation
   validateData(formData): boolean {
     if (this.stepCounter === 'First') {
-      // if (
-      //   !formData ||
-      //   !formData.defendantname ||
-      //   !formData.defendantrace ||
-      //   !formData.defendantgender
-      // ) {
-      //   return false;
-      // }
-      return true;
-    } else {
       if (
         !formData ||
-        !formData.chargedescription
+        !formData.defendantname ||
+        !formData.defendantrace ||
+        !formData.defendantgender
+      ) {
+        return false;
+      }
+      return true;
+    } else {
+      if (this.selectedItemTag.length > 0) {
+        formData.chargedescription = this.selectedItemTag;
+      }
+      if (
+        !formData ||
+        !formData.chargedescription || !formData.amountOfDrugPossessed ||
+        !formData.crimialHistoryCategory || !formData.estimatedSentence || !formData.givenSentence
       ) {
         return false;
       }
