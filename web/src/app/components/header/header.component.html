@@ -1,4 +1,4 @@
-<ibm-header name="{{title}}" [route]="['cases']">
+<ibm-header class="ibmid_header--title" name="{{title}}" [route]="['cases']">
     <ibm-hamburger *ngIf="hasHamburger" (click)="expanded($event)"></ibm-hamburger>
     <ibm-header-navigation>
         <ibm-header-item [route]="['cases']" *ngIf="isLoggedIn">Cases</ibm-header-item>
