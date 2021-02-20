@@ -1,6 +1,7 @@
 @import "~carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family";
 @import "~carbon-components/scss/globals/scss/typography";
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&family=Lato:wght@300&display=swap');
+<<<<<<< HEAD
 
 @mixin ibmid_login_btn-group {
     padding-top: rem(+20px);
@@ -9,6 +10,8 @@
     font-family: 'Lato', sans-serif;
     font-weight: 100;
 }
+=======
+>>>>>>> add new font styles and layout changes to login component
 
 .landing-page__illo {
 	max-width: 100%;
@@ -18,13 +21,18 @@
 .login_welcome {
 	margin-top: rem(+140px);
 	@include carbon--type-style('productive-heading-05');
+<<<<<<< HEAD
 	font-weight:500;
+=======
+	font-weight:400;
+>>>>>>> add new font styles and layout changes to login component
     font-family: 'IBM Plex Sans', sans-serif;
 
 }
 .login_welcome--bold {
     font-weight: bold ;
 }
+<<<<<<< HEAD
 .ibmid_login {
 @include ibmid_login_btn-group();
     padding-top: rem(+100px);
@@ -34,11 +42,36 @@
 
 .ibmid_signup {
 @include ibmid_login_btn-group();
+=======
+.ibmid_login_btn {
+   padding-top: rem(+20px);
+    padding-left: rem(+20px);
+    width: 11.7rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 100;
+    
+}
+
+.ibmid_btn--signup {
+    padding-top: rem(+20px);
+    padding-left: rem(+20px);
+    width: 11.7rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 100;
+>>>>>>> add new font styles and layout changes to login component
 }
 
 .signup_button {
     background-color: #333333;
+<<<<<<< HEAD
     @include ibmid_login_btn-group()
+=======
+    padding-top: rem(+20px);
+    padding-left: rem(+20px);
+    width: 11.7rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 100;
+>>>>>>> add new font styles and layout changes to login component
 }
 
 
