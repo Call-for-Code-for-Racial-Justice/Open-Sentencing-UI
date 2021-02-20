@@ -31,7 +31,7 @@ export class LogoutComponent implements OnInit {
     }
 
     // tslint:disable-next-line:object-literal-shorthand
-    this.router.navigateByUrl('/login', { queryParams: queryParams });
+    this.router.navigateByUrl('/login', /* Removed unsupported properties by Angular migration: queryParams. */ {});
   }
 
 }
