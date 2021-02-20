@@ -1,27 +1,46 @@
 @import "~carbon-components/scss/globals/scss/vendor/@carbon/type/scss/font-family";
 @import "~carbon-components/scss/globals/scss/typography";
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&family=Lato:wght@300&display=swap');
 
 .landing-page__illo {
 	max-width: 100%;
+    max-height: 100%;
 }
 
 .login_welcome {
 	margin-top: rem(+140px);
 	@include carbon--type-style('productive-heading-05');
-	@include carbon--font-weight('semibold');
-}
+	font-weight:400;
+    font-family: 'IBM Plex Sans', sans-serif;
 
-.ibmid_login {
-    padding-top: rem(+100px);
+}
+.login_welcome--bold {
+    font-weight: bold ;
+}
+.ibmid_login_btn {
+   padding-top: rem(+20px);
     padding-left: rem(+20px);
+    width: 11.7rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 100;
+    
 }
 
-.ibmid_signup {
+.ibmid_btn--signup {
     padding-top: rem(+20px);
     padding-left: rem(+20px);
+    width: 11.7rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 100;
 }
 
 .signup_button {
-    background-color: black;
+    background-color: #333333;
+    padding-top: rem(+20px);
+    padding-left: rem(+20px);
+    width: 11.7rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 100;
 }
+
 
