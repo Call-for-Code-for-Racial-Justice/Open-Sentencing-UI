@@ -3,42 +3,40 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300&family=Lato:wght@300&display=swap');
 
 @mixin ibmid_login_btn-group {
-    padding-top: rem(+20px);
-    padding-left: rem(+20px);
-    width: 12rem;
-    font-family: 'Lato', sans-serif;
-    font-weight: 100;
+  padding-top: rem(+20px);
+  padding-left: rem(+20px);
 }
-
+@mixin auth_btns {
+  width: 250px;
+  font-family: "Lato", sans-serif;
+  font-weight: 100;
+}
 .landing-page__illo {
-	max-width: 100%;
-    max-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .login_welcome {
-	margin-top: rem(+140px);
-	@include carbon--type-style('productive-heading-05');
-	font-weight:500;
-    font-family: 'IBM Plex Sans', sans-serif;
-
+  margin-top: rem(+140px);
+  @include carbon--type-style("productive-heading-05");
+  font-weight: 400;
+  font-family: "IBM Plex Sans", sans-serif;
 }
 .login_welcome--bold {
-    font-weight: bold ;
+  font-weight: bold;
 }
 .ibmid_login {
-@include ibmid_login_btn-group();
-    padding-top: rem(+100px);
-    padding-left: rem(+20px);
-    
+  padding-top: rem(+100px);
+  padding-left: rem(+20px);
 }
 
 .ibmid_signup {
-@include ibmid_login_btn-group();
+  @include ibmid_login_btn-group();
 }
-
+.login_button {
+  @include auth_btns;
+}
 .signup_button {
-    background-color: #333333;
-    @include ibmid_login_btn-group()
+  @include auth_btns;
 }
-
 
