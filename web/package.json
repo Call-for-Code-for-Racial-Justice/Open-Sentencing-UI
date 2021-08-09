@@ -26,6 +26,8 @@
         "carbon-components": "^10.9.0",
         "carbon-components-angular": "^3.37.0",
         "font-awesome": "^4.7.0",
+        "ibmcloud-appid": "^6.1.1",
+        "ibmcloud-appid-js": "^0.4.3",
         "jquery": "^3.5.1",
         "oidc-client": "^1.10.1",
         "rxjs": "~6.4.0",
