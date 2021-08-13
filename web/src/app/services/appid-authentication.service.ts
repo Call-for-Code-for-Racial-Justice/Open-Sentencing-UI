@@ -24,8 +24,10 @@ export class AuthenticationService {
   async ngOnInit() {
     try {
     this.appid.init({
-      clientId: '<CLIENT-ID>', // REPLACE with credentials from IBM CLOUD APPID Service
-      discoveryEndpoint: '<DISCOVERY-ENDPOINT-URL>' // REPLACE with credentials from IBM CLOUD APPID Service
+      // REPLACE with credentials from IBM CLOUD APPID Service
+      clientId: '<CLIENT-ID>',
+      // REPLACE with credentials from IBM CLOUD APPID Service
+      discoveryEndpoint: '<DISCOVERY-ENDPOINT-URL>'
     });
   } catch (e) {
     console.log("Login Error ::", e);
