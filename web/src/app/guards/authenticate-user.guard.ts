@@ -3,7 +3,7 @@ import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 
-import { AuthenticationService } from '../services/authentication.service';
+import { AuthenticationService } from '../services/appid-authentication.service';
 
 @Injectable()
 export class AuthenticatedUserGuard implements CanActivate {
@@ -20,9 +20,9 @@ export class AuthenticatedUserGuard implements CanActivate {
     if (null !== this.authenticationService.getTokenForProfile()) {
       const userToken = this.authenticationService.getTokenForProfile();
       if (this.authenticationService.isLoggedIn()) {
-        return true;
+         return true;
       } else {
-        this.authenticationService.clearTokenForProfile();
+         this.authenticationService.clearTokenForProfile();
       }
     }
 

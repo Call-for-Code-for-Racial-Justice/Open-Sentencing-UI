@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
-import { AuthenticationService } from '../../services/authentication.service';
+//import { AuthenticationService } from '../../services/authentication.service';
+import { AuthenticationService } from '../../services/appid-authentication.service';
 import { GridModule } from 'carbon-components-angular';
 
 @Component({
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthenticationService) { }
 
   ngOnInit() {
+    this.authService.ngOnInit();
     this.returnRoute = this.route.snapshot.queryParams.returnRoute;
   }
 
