@@ -1,5 +1,5 @@
 import { AfterContentChecked, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthenticationService } from './services/authentication.service';
+import { AuthenticationService } from './services/appid-authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
