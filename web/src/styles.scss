@@ -4,3 +4,5 @@ $feature-flags: ( grid-columns-16: true, );
 
 @import "~carbon-components/scss/globals/scss/styles.scss";
 @import './assets/scss/carbon-overrides.scss';
+
+* {font-family: "IBM Plex Sans", "Helvetica Neue", "Arial", "sans-serif";}

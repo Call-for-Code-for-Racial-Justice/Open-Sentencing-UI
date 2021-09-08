@@ -1,4 +1,18 @@
 // @import '@carbon/grid/scss/grid';
-p {
+
+.cases-table-heading{
+    padding-bottom: 1.5rem;
+}
+
+.cases-table--container {
+    display: flex;
+    justify-content: center;
+}
+.cases-disclaimer--container {
+    display: flex;
+    justify-content: center;
+}
+.cases-disclaimer--text {
+    font-style: italic;
     font-size: 0.6em;
 }

@@ -1,15 +1,35 @@
-.modal-text {
-    margin-bottom: 30px;
+
+
+.modal-layout-padding {
+    margin: 20px;
 }
 
-.bx--progress-line {
-    width: 15rem !important;
+.modal-layout-margin--bottom {
+    margin-bottom: 1.5rem;
+
+}
+.modal-layout--margin-top {
+    margin-top: 10px;
 }
 
-.bx--progress-step {
-    width: 15rem !important;
+.modal-layout--margin--right {
+margin-left: 2rem;
+color: #161616;
+font-weight: 400;
+
 }
 
-.bx--progress-label {
-    overflow: visible !important;
+.modal-input--container {
+    display: flex;
+   
+}
+.modal-disclaimer--text {
+    font-style: italic;
+    
+
+}
+
+.k{
+border:red solid 2px;
+width: 100%;
 }

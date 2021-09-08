@@ -20,12 +20,10 @@ export class LoginComponent implements OnInit {
     this.returnRoute = this.route.snapshot.queryParams.returnRoute;
   }
 
-  login() {
+ login() {
     if (this.returnRoute) {
-      this.authService.setOriginalUrl(this.returnRoute);
+      this.authService.setOriginalUrl(this.returnRoute)
     }
-
-    this.authService.startAuthentication();
   }
 
   signup() {

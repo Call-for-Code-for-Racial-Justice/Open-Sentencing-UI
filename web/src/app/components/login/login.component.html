@@ -9,13 +9,13 @@
         </div>
 		<div ibmCol [columnNumbers]="{'md': 4, 'lg': 10}">
 			<p class="login_welcome">
-				Welcome to IBM Open Sentencing
+				<span class="login_welcome--span">Welcome to</span> IBM Open Sentencing
 			</p>
-            <div ibmRow class="ibmid_login">
-			    <button ibmButton (click)="login()">Login with App ID</button>
+            <div class="bx--btn-set login_button">
+			    <button ibmButton (click)="login()">Login with IBMID</button>
             </div>
-            <div ibmRow class="ibmid_signup">
-			    <button ibmButton class="signup_button" (click)="signup()">Sign up</button>
+            <div class="bx--btn-set">
+			    <button ibmButton="secondary" (click)="signup()">Sign up</button>
             </div>
 		</div>
 	</div>

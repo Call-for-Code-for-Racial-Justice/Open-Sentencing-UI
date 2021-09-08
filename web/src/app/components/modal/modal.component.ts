@@ -15,7 +15,7 @@ export class ModalComponent extends BaseModal implements OnInit {
   isValid = true;
   helperText;
   message;
-  modalSize;
+  
 
   // combo box
   selectedItems = [];
@@ -182,7 +182,6 @@ export class ModalComponent extends BaseModal implements OnInit {
 
   // init function
   ngOnInit() {
-    this.modalSize = 'lg';
     this.showProgress();
   }
 
@@ -241,7 +240,7 @@ export class ModalComponent extends BaseModal implements OnInit {
   }
 
   // form next or submit
-  goNextOrSave() {
+ goNextOrSave() {
     this.isValid = this.validateData(this.defendantAndCaseForm.value);
     if (!this.isValid) {
       this.message = 'All the fields are required. Please enter the valid information and submit again.';
