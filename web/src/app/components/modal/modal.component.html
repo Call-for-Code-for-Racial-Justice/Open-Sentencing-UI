@@ -12,19 +12,19 @@
         <div *ngIf="!isValid" class="alert alert-danger  modal-layout-padding">
             All the fields are required. Please enter the valid information and submit again.
         </div>
-        <form [formGroup]="defendantAndCaseForm">
-            <div *ngIf="stepCounter === 'First'">
-                <ibm-label class="modal-text modal-layout-padding">
+        <form>
+            <div  *ngIf="stepCounter ==='First'" > 
+                <ibm-label class="modal-layout-padding">
                     <label>Defendant Name</label>
-                    <input  ibmText class="bx--text-input__field-wrapper " formControlName="defendantname"
+                    <input  ibmText class="bx--text-input__field-wrapper"
                         id="defendantname" name="defendantname" aria-describedby="defendantnameHelp"
-                        label="Defendant name">
+                        label="Defendant name" required>
                 </ibm-label>
                 <div class="modal-input--container modal-layout-margin--bottom">
 
-                    <ibm-select ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}" formControlName="defendantrace"
+                    <ibm-select ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}"
                         id="defendantrace" name="defendantrace" aria-describedby="defendantraceHelp"
-                        placeholder="Defendant race" label="Defendant Race">
+                        placeholder="Defendant race" label="Defendant Race" required>
                         <option value="default" disabled selected hidden>Choose an option</option>
                         <option value="white">White/Caucasian</option>
                         <option value="black">Black/African American</option>
@@ -36,24 +36,24 @@
 
 
 
-                    <ibm-select ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}" formControlName="defendantgender"
+                    <ibm-select ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}" 
                         id="defendantgender" name="defendantgender" aria-describedby="defendantgenderHelp"
-                        placeholder="Defendant gender" label="Defendant Gender">
+                        placeholder="Defendant gender" label="Defendant Gender" required>
                         <option value="default" disabled selected hidden>Choose an option</option>
                         <option value="female">Female</option>
                         <option value="male">Male</option>
                         <option value="other">Other</option>
                     </ibm-select>
-
+                  
 
                 </div>
 
-
+                {{ defendantAndCaseForm.value| json }}
 
             </div>
             <div class="modal-layout-margin--bottom " *ngIf="stepCounter === 'Second'">
                 <div class="modal-layout-padding">
-                    <ibm-combo-box formControlName="chargedescription" appendInline="true" [items]="filterCharge"
+                    <ibm-combo-box  appendInline="true" [items]="filterCharge"
                         (keyup)="mySearch($event)" (selected)="selected($event)">
                         <ibm-dropdown-list></ibm-dropdown-list>
                     </ibm-combo-box>
@@ -65,7 +65,7 @@
 
 
 
-                    <div ibmCol [columnNumbers]="{'lg': 16, 'md': 16, 'sm': 4}">
+                    <div  ibmCol [columnNumbers]="{'lg': 16, 'md': 16, 'sm': 4}">
                         <div>
                             <legend class="bx--label">Is the charge drug related?
                                 <span *ngIf="enableRadioSelection === true" class="modal-layout--margin--right">For guidance, refer to the <a
@@ -73,7 +73,7 @@
                                         target="_blank" ibmLink>U.S. Sentencing Commisions guidelines</a></span>
                             </legend>
                         </div>
-                        <ibm-radio-group aria-label="radiogroup" formControlName="radioGroup"
+                        <ibm-radio-group aria-label="radiogroup" 
                             (change)="radioSelection($event)">
 
                             <ibm-radio value="yes">
@@ -88,7 +88,7 @@
                 <div class="modal-input--container" *ngIf="enableRadioSelection === true">
                     <div ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}">
 
-                        <ibm-select formControlName="amountOfDrugPossessed" id="amountOfDrugPossessed"
+                        <ibm-select  id="amountOfDrugPossessed"
                             name="amountOfDrugPossessed" aria-describedby="amountOfDrugPossessedHelp"
                             placeholder="Select an option" label="Amount range of drug possessed">
                             <option value="default" disabled selected hidden>Choose an option</option>
@@ -101,7 +101,7 @@
                         </ibm-select>
                     </div>
                     <div ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}">
-                        <ibm-select formControlName="crimialHistoryCategory" id="crimialHistoryCategory"
+                        <ibm-select id="crimialHistoryCategory"
                             name="crimialHistoryCategory" aria-describedby="crimialHistoryCategoryHelp"
                             placeholder="Select an option" label="Criminal History Category">
                             <option value="default" disabled selected hidden>Choose an option</option>
@@ -113,7 +113,7 @@
                 </div>
                 <div class="modal-input--container modal-layout--margin-top" *ngIf="enableRadioSelection === true">
                     <div ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}">
-                        <ibm-select ibmCol formControlName="estimatedSentence" id="estimatedSentence"
+                        <ibm-select ibmCol id="estimatedSentence"
                             name="estimatedSentence" aria-describedby="estimatedSentenceHelp"
                             placeholder="Select an option" label="Estimated Sentence">
                             <option value="default" disabled selected hidden>Choose an option</option>
@@ -126,7 +126,7 @@
                         </ibm-select>
                     </div>
                     <div ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}">
-                        <ibm-select formControlName="givenSentence" id="givenSentence" name="givenSentence"
+                        <ibm-select id="givenSentence" name="givenSentence"
                             aria-describedby="givenSentenceHelp" placeholder="Select an option" label="Given Sentence">
                             <option value="default" disabled selected hidden>Choose an option</option>
                             <option value="female">Female</option>
