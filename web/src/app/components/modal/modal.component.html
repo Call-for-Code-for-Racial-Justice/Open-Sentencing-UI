@@ -5,7 +5,7 @@
     </ibm-modal-header>
     <section  ibmModalContent hasForm="true">
         <div class="modal-layout-padding">
-            <ibm-progress-indicator class="bx--progress-line; bx--progress-step; bx--progress-label" [steps]="steps"
+            <ibm-progress-indicator class="bx--progress-line; bx--progress-step; bx--progress-label" [steps]="defaultSteps"
             [current]="current">
         </ibm-progress-indicator>
         </div>
@@ -48,7 +48,7 @@
 
                 </div>
 
-                {{ defendantAndCaseForm.value| json }}
+                {{ this.current }}
 
             </div>
             <div class="modal-layout-margin--bottom " *ngIf="stepCounter === 'Second'">
@@ -83,6 +83,7 @@
                                 No
                             </ibm-radio>
                         </ibm-radio-group>
+                        {{ this.current }}
                     </div>
                 </fieldset>
                 <div class="modal-input--container" *ngIf="enableRadioSelection === true">
@@ -134,6 +135,7 @@
                             <option value="other">Other</option>
                         </ibm-select>
                     </div>
+                    
                 </div>
             </div>
         </form>
