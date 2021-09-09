@@ -21,9 +21,12 @@ export class LoginComponent implements OnInit {
   }
 
  login() {
-    if (this.returnRoute) {
-      this.authService.setOriginalUrl(this.returnRoute)
-    }
+
+      this.router.navigate(['cases'])
+    
+    //this.authService.startAuthentication()
+    
+
   }
 
   signup() {

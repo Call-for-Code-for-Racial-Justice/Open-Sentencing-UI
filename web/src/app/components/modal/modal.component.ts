@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { BaseModal, ListItem, ModalService } from 'carbon-components-angular';
 import { ModalSvc } from './modal.service';
@@ -11,10 +11,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent extends BaseModal implements OnInit {
-  modalText = 'Add a new case';
-  isValid = true;
-  helperText;
-  message;
+  
   
 
   // combo box
@@ -143,7 +140,7 @@ export class ModalComponent extends BaseModal implements OnInit {
 
   // progress indicator
   current;
-  stepCounter = 'First';
+  stepCounter:string = 'First';
   steps = [];
   defaultSteps = [
       {
@@ -157,32 +154,42 @@ export class ModalComponent extends BaseModal implements OnInit {
     ];
 
   // radio selection
-  enableRadioSelection = false;
+  enableRadioSelection:boolean;
 
   // new form initialization
-  defendantAndCaseForm = new FormGroup({
-    defendantname: new FormControl(),
-    // casedescription: new FormControl(),
-    chargedescription: new FormControl(),
-    defendantrace: new FormControl(),
-    defendantgender: new FormControl(),
-    radioGroup: new FormControl(),
-    amountOfDrugPossessed: new FormControl(),
-    crimialHistoryCategory: new FormControl(),
-    estimatedSentence: new FormControl(),
-    givenSentence: new FormControl()
-  });
+  defendantAndCaseForm :FormGroup;
 
   constructor(
     protected modalService: ModalService,
-    protected modalSvc: ModalSvc
+    protected modalSvc: ModalSvc,
+    private fb:FormBuilder
   ) {
     super();
+
   }
 
   // init function
   ngOnInit() {
     this.showProgress();
+    this.defendantAndCaseForm = this.fb.group({
+
+      defendantBackground :new FormGroup({
+        defendantname: new FormControl([Validators.required]),
+        defendantrace: new FormControl([Validators.required]),
+        defendantgender: new FormControl([Validators.required]),
+      }),
+     
+      // casedescription: new FormControl(),
+      caseDescription :new FormGroup({
+      chargeDescription: new FormControl([Validators.required]),
+       radioGroup: new FormControl(),
+      amountOfDrugPossessed: new FormControl([Validators.required]),
+      crimialHistoryCategory:new FormControl([Validators.required]),
+      estimatedSentence: new FormControl([Validators.required]),
+      givenSentence: new FormControl([Validators.required]),
+      })
+
+    });
   }
 
   // charges tag array
@@ -225,28 +232,13 @@ export class ModalComponent extends BaseModal implements OnInit {
 
   // progress indicator update
   showProgress() {
-    this.steps = Array.from(this.defaultSteps);
-    switch (this.stepCounter) {
-      case 'First':
-        this.current = 0;
-        break;
-      case 'Second':
-        this.current = 1;
-        break;
-      default:
-        this.current = 0;
-        break;
-    }
+    this.current = (this.stepCounter === 'First') ? 0:1;
   }
 
   // form next or submit
- goNextOrSave() {
-    this.isValid = this.validateData(this.defendantAndCaseForm.value);
-    if (!this.isValid) {
-      this.message = 'All the fields are required. Please enter the valid information and submit again.';
-    } else {
+  goNextOrSave() {
+
       if (this.stepCounter !== 'Second') { // updating modal with second step on progress indicator
-        this.message = undefined;
         this.selectedItemTag = [];
         this.textForButton = 'Finish';
         this.stepCounter = 'Second';
@@ -260,7 +252,7 @@ export class ModalComponent extends BaseModal implements OnInit {
         });
       }
     }
-  }
+  
 
   // radio selection
   radioSelection(selection) {
@@ -272,30 +264,5 @@ export class ModalComponent extends BaseModal implements OnInit {
     }
   }
 
-  // form validation
-  validateData(formData): boolean {
-    if (this.stepCounter === 'First') {
-      if (
-        !formData ||
-        !formData.defendantname ||
-        !formData.defendantrace ||
-        !formData.defendantgender
-      ) {
-        return false;
-      }
-      return true;
-    } else {
-      if (this.selectedItemTag.length > 0) {
-        formData.chargedescription = this.selectedItemTag;
-      }
-      if (
-        !formData ||
-        !formData.chargedescription || !formData.amountOfDrugPossessed ||
-        !formData.crimialHistoryCategory || !formData.estimatedSentence || !formData.givenSentence
-      ) {
-        return false;
-      }
-      return true;
-    }
-  }
+
 }
