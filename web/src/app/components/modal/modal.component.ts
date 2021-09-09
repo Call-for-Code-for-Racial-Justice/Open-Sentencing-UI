@@ -11,9 +11,6 @@ import { Subject } from 'rxjs';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent extends BaseModal implements OnInit {
-  
-  
-
   // combo box
   selectedItems = [];
   tempTagFilter = [];
