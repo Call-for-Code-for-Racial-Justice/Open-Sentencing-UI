@@ -138,8 +138,8 @@ export class ModalComponent extends BaseModal implements OnInit {
   // progress indicator
   current;
   stepCounter:string = 'First';
-  steps = [];
-  defaultSteps = [
+  
+  defaultSteps:Array<object> = [
       {
         text: 'Defendant background',
         state: ['incomplete']
@@ -170,21 +170,21 @@ export class ModalComponent extends BaseModal implements OnInit {
     this.showProgress();
     this.defendantAndCaseForm = this.fb.group({
 
-      defendantBackground :new FormGroup({
-        defendantname: new FormControl([Validators.required]),
+      
+        defendantname: new FormControl(),
         defendantrace: new FormControl([Validators.required]),
         defendantgender: new FormControl([Validators.required]),
-      }),
+      
      
       // casedescription: new FormControl(),
-      caseDescription :new FormGroup({
-      chargeDescription: new FormControl([Validators.required]),
+      
+      chargeDescription: new FormControl(),
        radioGroup: new FormControl(),
-      amountOfDrugPossessed: new FormControl([Validators.required]),
-      crimialHistoryCategory:new FormControl([Validators.required]),
-      estimatedSentence: new FormControl([Validators.required]),
-      givenSentence: new FormControl([Validators.required]),
-      })
+      amountOfDrugPossessed: new FormControl(),
+      crimialHistoryCategory:new FormControl(),
+      estimatedSentence: new FormControl(),
+      givenSentence: new FormControl(),
+      
 
     });
   }
@@ -235,7 +235,7 @@ export class ModalComponent extends BaseModal implements OnInit {
   // form next or submit
   goNextOrSave() {
 
-      if (this.stepCounter !== 'Second') { // updating modal with second step on progress indicator
+     if (this.stepCounter !== 'Second') { // updating modal with second step on progress indicator
         this.selectedItemTag = [];
         this.textForButton = 'Finish';
         this.stepCounter = 'Second';
@@ -253,12 +253,14 @@ export class ModalComponent extends BaseModal implements OnInit {
 
   // radio selection
   radioSelection(selection) {
+    
     if (selection.value === 'yes') {
       // enable view
       this.enableRadioSelection = true;
     } else {
       this.enableRadioSelection = false;
     }
+    
   }
 
 
