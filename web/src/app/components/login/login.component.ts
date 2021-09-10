@@ -21,12 +21,10 @@ export class LoginComponent implements OnInit {
   }
 
  login() {
-
-      this.router.navigate(['cases'])
-    
-    //this.authService.startAuthentication()
-    
-
+    if (this.returnRoute) {
+      this.authService.setOriginalUrl(this.returnRoute);
+    }
+    this.authService.startAuthentication();
   }
 
   signup() {
