@@ -49,7 +49,11 @@ The [Invision Prototype](https://ibm.invisionapp.com/share/Q5O0KIVUNE8#/screens)
 
 ### Configure the application
 
-Fill out the App ID credentials in `web/src/app/services/appid-authentication.service.ts`. You can obtain the values from the `Service credentials` tab on the main page of your service instance.
+Fill out the App ID credentials in `web/src/app/services/appid-authentication.service.ts`. To obtain the credentials, add new application in your App ID service. Select "Single-page application" from Type drowdown. 
+
+![](images/spa_instruction.png)
+
+Now you can obtain the values from the `Service credentials` tab on the main page of your service instance.
 
 ![](images/creds.png)
 
