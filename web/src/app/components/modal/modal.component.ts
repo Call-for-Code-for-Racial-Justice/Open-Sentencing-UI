@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { BaseModal, ListItem, ModalService } from 'carbon-components-angular';
 import { ModalSvc } from './modal.service';
@@ -18,6 +18,9 @@ export class ModalComponent extends BaseModal implements OnInit {
   selectedItemTag = [];
   public searchText = new Subject<string>();
 
+  
+
+   invalid:boolean;
   // charges record
   charges = [
     'Administration of Justice',
@@ -134,6 +137,9 @@ export class ModalComponent extends BaseModal implements OnInit {
 
   // step-1 model
   textForButton = 'Next: Case details';
+  validateDefendantName; 
+   validateDefendantRace;
+  validateDefendantGender;
 
   // progress indicator
   current;
@@ -168,12 +174,17 @@ export class ModalComponent extends BaseModal implements OnInit {
   // init function
   ngOnInit() {
     this.showProgress();
+    
     this.defendantAndCaseForm = this.fb.group({
 
       
         defendantname: new FormControl(),
-        defendantrace: new FormControl([Validators.required]),
-        defendantgender: new FormControl([Validators.required]),
+        defendantrace: new FormControl(['', Validators.compose(
+          [Validators.required, this.validateSelection]
+        )]),
+        defendantgender: new FormControl(['', Validators.compose(
+          [Validators.required, this.validateSelection]
+        )]    ),
       
      
       // casedescription: new FormControl(),
@@ -187,6 +198,18 @@ export class ModalComponent extends BaseModal implements OnInit {
       
 
     });
+
+    this.validateDefendantName = this.defendantAndCaseForm.controls['defendantname'];
+    this.validateDefendantGender= this.defendantAndCaseForm.controls['defendantgender'];
+    this.validateDefendantRace = this.defendantAndCaseForm.controls['defendantrace']
+    
+    
+  
+  }
+  validateSelection(control:FormControl){
+      if (control.value.length < 2 ){
+        return {selection:true}
+      }
   }
 
   // charges tag array
@@ -263,5 +286,9 @@ export class ModalComponent extends BaseModal implements OnInit {
     
   }
 
-
+  chargeDescriptionFilterTag(){
+    if (this.selectedItemTag.length > 0) {
+      this.defendantAndCaseForm.value.chargeDescription = this.selectedItemTag;
+    }
+  }
 }

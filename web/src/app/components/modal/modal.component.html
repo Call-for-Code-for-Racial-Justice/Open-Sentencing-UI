@@ -1,4 +1,4 @@
-<ibm-modal size="md" (overlaySelected)="closeModal()">
+<ibm-modal size="sm" (overlaySelected)="closeModal()">
     <ibm-modal-header (closeSelect)="closeModal()">
         <h4 ibmModalHeaderHeading>Add a new case</h4>
         <p>Specify the high level details of the case</p>
@@ -9,23 +9,24 @@
             [current]="current">
         </ibm-progress-indicator>
         </div>
-        
-        <div *ngIf="!defendantAndCaseForm.valid" class="alert alert-danger  modal-layout-padding">
-            All the fields are required. Please enter the valid information and submit again.
-        </div>
+
         <form [formGroup]="defendantAndCaseForm">
             <div  *ngIf="stepCounter ==='First'" > 
-                <ibm-label class="modal-layout-padding">
+                <ibm-label [invalid]="!this.validateDefendantName.valid && !this.validateDefendantName.touch" invalidText="Please enter the defendant's name."  class="modal-layout-padding">
                     <label>Defendant Name</label>
-                    <input  ibmText class="bx--text-input__field-wrapper"
+                    <input   ibmtext=""
+                    autocomplete="on"
+                    
+                    class="bx--text-input"
+                    id="ibm-label-0"
                     formControlName="defendantname" 
-                        id="defendantname" name="defendantname" aria-describedby="defendantnameHelp"
+                        id="defendantname" name="defendantname" aria-describedby="defendantnameHelp" placeholder="Enter the defendant name"
                         label="Defendant name" required>
                 </ibm-label>
                 <div class="modal-input--container modal-layout-margin--bottom">
 
                     <ibm-select ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}"
-                        id="defendantrace" name="defendantrace" aria-describedby="defendantraceHelp"
+                        id="defendantrace" [invalid]="this.validateDefendantRace.value.length < 2 || (!this.defendantAndCaseForm.touch && !this.defendantAndCaseForm.valid)" invalidText="Select the defendant's race" name="defendantrace" aria-describedby="defendantraceHelp"
                         placeholder="Defendant race" label="Defendant Race" formControlName="defendantrace" required>
                         <option value="default" disabled selected hidden>Choose an option</option>
                         <option value="white">White/Caucasian</option>
@@ -40,21 +41,18 @@
 
                     <ibm-select ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}" 
                         id="defendantgender"formControlName="defendantgender"  name="defendantgender" aria-describedby="defendantg"
-                        placeholder="Defendant gender" label="Defendant Gender" required>
-                        <option value="default" disabled selected hidden>Choose an option</option>
+                        placeholder="Defendant gender" label="Defendant Gender" [invalid]="this.validateDefendantGender.value < 2 || (!this.defendantAndCaseForm.touch && !this.defendantAndCaseForm.valid)">
                         <option value="female">Female</option>
                         <option value="male">Male</option>
                         <option value="other">Other</option>
                     </ibm-select>
                   
-                                  
-                    
+          
                 </div>
-                {{defendantAndCaseForm.value | json}}
-    
+         
 
             </div>
-            <div class="modal-layout-margin--bottom " *ngIf="stepCounter === 'Second'">
+            <div  class="modal-layout-margin--bottom " *ngIf="stepCounter === 'Second'">
                 <div class="modal-layout-padding">
                     <ibm-combo-box  appendInline="true" [items]="filterCharge"
                         (keyup)="mySearch($event)" (selected)="selected($event)">
@@ -142,6 +140,7 @@
                     </div>
                     
                 </div>
+                
             </div>
         </form>
     </section>
@@ -149,7 +148,7 @@
         <button class="bx--btn bx--btn--secondary" (click)="closeModal() ">
             Cancel
         </button>
-        <button [disabled]="!defendantAndCaseForm.valid" class="bx--btn bx--btn--primary" modal-primary-focus (click)="goNextOrSave() ">
+   <button [disabled]="!this.defendantAndCaseForm.valid " class="bx--btn bx--btn--primary" modal-primary-focus (click)="goNextOrSave() ">
             {{textForButton}}
         </button>
     </ibm-modal-footer>

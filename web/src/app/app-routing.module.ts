@@ -13,7 +13,7 @@ import { AuthCallbackComponent } from './components/auth-callback/auth-callback.
 const routes: Routes = [
   {
     path: 'cases', component: CaseComponent,
-    canActivate: [AuthenticatedUserGuard]
+   canActivate: [AuthenticatedUserGuard]
   },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
