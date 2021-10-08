@@ -8,34 +8,37 @@
 <div ibmGrid class="bx--grid--full-width landing-page">
     <div ibmRow class="landing-page__r3 cases-table--container ">
         
-        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 12}">
-            <div class="outside bx--col-padding">
+        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 14}">
+            <div class=" bx--col-padding">
                 <ibm-table-container>
                     <h1 class="cases-table-heading">
                         Cases
                     </h1>
-                    <ibm-table-toolbar>
-                        <ibm-table-toolbar-content>
-                            <ibm-table-toolbar-search [expandable]="true" placeholder="Search" (valueChange)="filterModelData($event)">
-                            </ibm-table-toolbar-search>
-                            <button ibmButton="primary" size="sm" (click)="openCaseModal()">
-                      Add a new case<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
-                    </button>
-                        </ibm-table-toolbar-content>
-                    </ibm-table-toolbar>
-                    <ibm-table [stickyHeader]="stickyHeader" [size]="tableSize" [skeleton]="skeleton" [model]="skeleton ? skeletonModel: model" [enableSingleSelect]="enableSingleSelect" [showSelectionColumn]="showSelectionColumn" [striped]="striped" [isDataGrid]="isDataGrid"
-                        (sort)="sortColumn($event)">
-                    </ibm-table>
-                    <ibm-pagination [model]="model" [pageInputDisabled]="false" [itemsPerPageOptions]="[10,20,50]" (selectPage)="selectPage($event)">
-                    </ibm-pagination>
+                    <div class="outside">
+                        <ibm-table-toolbar>
+                            <ibm-table-toolbar-content>
+                                <ibm-table-toolbar-search [expandable]="true" placeholder="Search" (valueChange)="filterModelData($event)">
+                                </ibm-table-toolbar-search>
+                                <button ibmButton="primary" size="sm" (click)="openCaseModal()">
+                          Add a new case<ibm-icon-add size="20" class="bx--btn__icon"></ibm-icon-add>
+                        </button>
+                            </ibm-table-toolbar-content>
+                        </ibm-table-toolbar>
+                        <ibm-table [stickyHeader]="stickyHeader" [size]="tableSize" [skeleton]="skeleton" [model]="skeleton ? skeletonModel: model" [enableSingleSelect]="enableSingleSelect" [showSelectionColumn]="showSelectionColumn" [striped]="striped" [isDataGrid]="isDataGrid"
+                            (sort)="sortColumn($event)">
+                        </ibm-table>
+                        <ibm-pagination [model]="model" [pageInputDisabled]="false" [itemsPerPageOptions]="[10,20,50]" (selectPage)="selectPage($event)">
+                        </ibm-pagination>
+                    </div>
+                    
                 </ibm-table-container>
             </div>
         </div>
     </div>
 </div>
 <div ibmGrid class="bx--grid--full-width landing-page">
-    <div ibmRow class="landing-page__r3 cases-table--container">
-        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 12}">
+    <div ibmRow class="landing-page__r3 cases-disclaimer--container">
+        <div ibmCol [columnNumbers]="{'md': 4, 'lg': 14}">
             <p class="disclaimer cases-disclaimer--text">
                 This site provides applications using data that has been modified for use from its original source, <a href="http://ida.ussc.gov">ida.ussc.gov</a>, an official website of the U.S. Sentencing Commission. The U.S. Sentencing Commission makes
                 no claims as to the content, accuracy, timeliness, or completeness of any of the data provided at this site. The data provided at this site is subject to change at any time. It is understood that the data provided at this site is being

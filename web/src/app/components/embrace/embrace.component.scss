@@ -1,0 +1,45 @@
+
+.embrace_form--container{
+   padding: 2rem;
+   padding-right:0px;
+   margin: 0px !important;
+   
+    background-color: #f4f4f4;
+  
+
+  }
+
+  .embrace_form{
+    justify-content: center;   
+    margin: 0 auto;
+    height: 100vh;
+         
+  }
+
+
+   
+  .embrace_header-toolbar {
+      display: flex;
+      span {
+        display: flex;
+        margin: auto;
+      }
+
+}
+  .embrace_form--spacing {
+    padding: .5rem;
+  }
+
+  .embrace_button {
+    justify-content: flex-end;
+      padding: 2.5rem;
+      margin-left:4rem;
+  }
+
+  @media screen and (max-width: 800px) {
+    .embrace_button {
+        margin: 0;
+        justify-content:center;
+
+    }
+  }

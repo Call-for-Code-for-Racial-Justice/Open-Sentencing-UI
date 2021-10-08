@@ -2,6 +2,9 @@
     <ibm-hamburger *ngIf="hasHamburger" (click)="expanded($event)"></ibm-hamburger>
     <ibm-header-navigation>
         <ibm-header-item [route]="['cases']" *ngIf="isLoggedIn">Cases</ibm-header-item>
+        <ibm-header-item [route]="['embrace']" *ngIf="isLoggedIn">Embrace</ibm-header-item>
         <ibm-header-item [route]="['logout']" *ngIf="isLoggedIn">Log Out</ibm-header-item>
+
+
     </ibm-header-navigation>
 </ibm-header>

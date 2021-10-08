@@ -20,7 +20,9 @@ export class ModalComponent extends BaseModal implements OnInit {
 
   
 
-   invalid:boolean;
+   genderIsSelected
+   raceIsSelected
+
   // charges record
   charges = [
     'Administration of Justice',
@@ -161,11 +163,15 @@ export class ModalComponent extends BaseModal implements OnInit {
 
   // new form initialization
   defendantAndCaseForm :FormGroup;
+  caseDescription: FormGroup;
+  caseDetailsIsSelected: boolean;
+  validateFilter: AbstractControl;
 
   constructor(
     protected modalService: ModalService,
     protected modalSvc: ModalSvc,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    
   ) {
     super();
 
@@ -173,8 +179,10 @@ export class ModalComponent extends BaseModal implements OnInit {
 
   // init function
   ngOnInit() {
+   
     this.showProgress();
     
+
     this.defendantAndCaseForm = this.fb.group({
 
       
@@ -188,24 +196,28 @@ export class ModalComponent extends BaseModal implements OnInit {
       
      
       // casedescription: new FormControl(),
-      
-      chargeDescription: new FormControl(),
-       radioGroup: new FormControl(),
-      amountOfDrugPossessed: new FormControl(),
-      crimialHistoryCategory:new FormControl(),
-      estimatedSentence: new FormControl(),
-      givenSentence: new FormControl(),
+       chargeFilterInput: new FormControl(),
+        chargeDescription: new FormControl(),
+        radioGroup: new FormControl(),
+       amountOfDrugPossessed: new FormControl(),
+       crimialHistoryCategory:new FormControl(),
+       estimatedSentence: new FormControl(),
+       givenSentence: new FormControl(),
+       
+    
       
 
     });
+     
 
     this.validateDefendantName = this.defendantAndCaseForm.controls['defendantname'];
     this.validateDefendantGender= this.defendantAndCaseForm.controls['defendantgender'];
     this.validateDefendantRace = this.defendantAndCaseForm.controls['defendantrace']
-    
-    
+    this.validateFilter = this.defendantAndCaseForm.controls['chargeFilterInput']
+ 
   
   }
+  
   validateSelection(control:FormControl){
       if (control.value.length < 2 ){
         return {selection:true}
@@ -230,7 +242,7 @@ export class ModalComponent extends BaseModal implements OnInit {
     let tempList: Array<ListItem> = [];
     this.searchText.next(search.target.value);
     this.searchText.pipe(
-      debounceTime(1000),
+      debounceTime(100),
       distinctUntilChanged(),
       switchMap((query) =>  this._filter(query))
     )
@@ -260,15 +272,17 @@ export class ModalComponent extends BaseModal implements OnInit {
 
      if (this.stepCounter !== 'Second') { // updating modal with second step on progress indicator
         this.selectedItemTag = [];
-        this.textForButton = 'Finish';
+       this.textForButton = 'Finish';
         this.stepCounter = 'Second';
-        this.showProgress();
+        this.showProgress()
+      
       } else {
         this.showProgress();
         this.modalSvc.submitForm(this.defendantAndCaseForm.value)
         .subscribe((data: any) =>  {
           // wait for data success and then close modal
-          this.modalService.destroy();
+          this.modalService.destroy()
+          this.closeModal()
         });
       }
     }
@@ -291,4 +305,12 @@ export class ModalComponent extends BaseModal implements OnInit {
       this.defendantAndCaseForm.value.chargeDescription = this.selectedItemTag;
     }
   }
+
+  validateCasedetails(){
+    
+      this.caseDetailsIsSelected = this.validateDefendantRace.value[0] == ''; 
+      this.genderIsSelected = this.validateDefendantGender.value[0] == '';
+      
+  
+}
 }

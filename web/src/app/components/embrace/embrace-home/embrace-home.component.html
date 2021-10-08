@@ -1,0 +1,9 @@
+
+<ibm-sidenav ibmCol class="embrace_menu">
+    <ibm-sidenav-item (click)="showSentencing()" [active]="showSentencing && this.insights === false"><svg icon ibmIconIdea size="16"></svg>Insight Summary</ibm-sidenav-item>
+    <ibm-sidenav-item (click)="showInsights()"[active]="this.insights === true" ><svg icon ibmIconReportData size="16"></svg>Open Sentencing</ibm-sidenav-item>
+</ibm-sidenav>
+
+<div *ngIf="this.insights === true">
+    <app-embrace></app-embrace>
+</div>

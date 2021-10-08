@@ -12,7 +12,7 @@
 
         <form [formGroup]="defendantAndCaseForm">
             <div  *ngIf="stepCounter ==='First'" > 
-                <ibm-label [invalid]="!this.validateDefendantName.valid && !this.validateDefendantName.touch" invalidText="Please enter the defendant's name."  class="modal-layout-padding">
+                <ibm-label [invalid]="" invalidText="Please enter the defendant's name."  class="modal-layout-padding">
                     <label>Defendant Name</label>
                     <input   ibmtext=""
                     autocomplete="on"
@@ -26,22 +26,18 @@
                 <div class="modal-input--container modal-layout-margin--bottom">
 
                     <ibm-select ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}"
-                        id="defendantrace" [invalid]="this.validateDefendantRace.value.length < 2 || (!this.defendantAndCaseForm.touch && !this.defendantAndCaseForm.valid)" invalidText="Select the defendant's race" name="defendantrace" aria-describedby="defendantraceHelp"
+                        id="defendantrace" [invalid]=""  invalidText="Select the defendant's race" name="defendantrace" aria-describedby="defendantraceHelp"
                         placeholder="Defendant race" label="Defendant Race" formControlName="defendantrace" required>
-                        <option value="default" disabled selected hidden>Choose an option</option>
-                        <option value="white">White/Caucasian</option>
-                        <option value="black">Black/African American</option>
-                        <option value="hispanic">Native American</option>
-                        <option value="americanIndian">Hispanic/Latino</option>
-                        <option value="asian">Asian</option>
-                        <option value="other">other</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
                     </ibm-select>
 
 
 
                     <ibm-select ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}" 
                         id="defendantgender"formControlName="defendantgender"  name="defendantgender" aria-describedby="defendantg"
-                        placeholder="Defendant gender" label="Defendant Gender" [invalid]="this.validateDefendantGender.value < 2 || (!this.defendantAndCaseForm.touch && !this.defendantAndCaseForm.valid)">
+                        placeholder="Defendant gender" label="Defendant Gender" [invalid]="">
                         <option value="female">Female</option>
                         <option value="male">Male</option>
                         <option value="other">Other</option>
@@ -49,23 +45,19 @@
                   
           
                 </div>
-         
 
             </div>
             <div  class="modal-layout-margin--bottom " *ngIf="stepCounter === 'Second'">
                 <div class="modal-layout-padding">
                     <ibm-combo-box  appendInline="true" [items]="filterCharge"
-                        (keyup)="mySearch($event)" (selected)="selected($event)">
+                        (keyup)="mySearch($event)" (selected)="selected($event)" formControlName="chargeFilterInput">
                         <ibm-dropdown-list></ibm-dropdown-list>
-                    </ibm-combo-box>
+                    </ibm-combo-box >
                     <ibm-tag-filter type="blue" closeButtonLabel="Clear" (close)="onClose(x.id)"
                         *ngFor="let x of selectedItemTag">{{x.content}}</ibm-tag-filter>
                 </div>
                 <fieldset class="bx--fieldset">
-
-
-
-
+                    
                     <div  ibmCol [columnNumbers]="{'lg': 16, 'md': 16, 'sm': 4}">
                         <div>
                             <legend class="bx--label">Is the charge drug related?
@@ -143,13 +135,17 @@
                 
             </div>
         </form>
+
     </section>
     <ibm-modal-footer>
         <button class="bx--btn bx--btn--secondary" (click)="closeModal() ">
             Cancel
         </button>
-   <button [disabled]="!this.defendantAndCaseForm.valid " class="bx--btn bx--btn--primary" modal-primary-focus (click)="goNextOrSave() ">
+   <button  *ngIf="stepCounter === 'First'" [disabled]="!this.defendantAndCaseForm.valid || this.validateDefendantRace.value[0] == '' || this.validateDefendantGender.value[0] == ''"  class="bx--btn bx--btn--primary" modal-primary-focus (click)="goNextOrSave() ">
             {{textForButton}}
+        </button>
+        <button  *ngIf="stepCounter === 'Second'" [disabled]="this.validateFilter.value === null"  class="bx--btn bx--btn--primary" modal-primary-focus (click)="closeModal()">
+            Finish
         </button>
     </ibm-modal-footer>
 </ibm-modal>
