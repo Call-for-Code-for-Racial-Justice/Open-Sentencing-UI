@@ -22,8 +22,9 @@ export class LoginComponent implements OnInit {
 
  login() {
     if (this.returnRoute) {
-      this.authService.setOriginalUrl(this.returnRoute)
+      this.authService.setOriginalUrl(this.returnRoute);
     }
+    this.authService.startAuthentication();
   }
 
   signup() {

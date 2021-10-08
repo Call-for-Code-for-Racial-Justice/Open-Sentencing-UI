@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { BaseModal, ListItem, ModalService } from 'carbon-components-angular';
 import { ModalSvc } from './modal.service';
@@ -11,12 +11,6 @@ import { Subject } from 'rxjs';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent extends BaseModal implements OnInit {
-  modalText = 'Add a new case';
-  isValid = true;
-  helperText;
-  message;
-  
-
   // combo box
   selectedItems = [];
   tempTagFilter = [];
@@ -24,6 +18,9 @@ export class ModalComponent extends BaseModal implements OnInit {
   selectedItemTag = [];
   public searchText = new Subject<string>();
 
+  
+
+   invalid:boolean;
   // charges record
   charges = [
     'Administration of Justice',
@@ -140,12 +137,15 @@ export class ModalComponent extends BaseModal implements OnInit {
 
   // step-1 model
   textForButton = 'Next: Case details';
+  validateDefendantName; 
+   validateDefendantRace;
+  validateDefendantGender;
 
   // progress indicator
   current;
-  stepCounter = 'First';
-  steps = [];
-  defaultSteps = [
+  stepCounter:string = 'First';
+  
+  defaultSteps:Array<object> = [
       {
         text: 'Defendant background',
         state: ['incomplete']
@@ -157,32 +157,59 @@ export class ModalComponent extends BaseModal implements OnInit {
     ];
 
   // radio selection
-  enableRadioSelection = false;
+  enableRadioSelection:boolean;
 
   // new form initialization
-  defendantAndCaseForm = new FormGroup({
-    defendantname: new FormControl(),
-    // casedescription: new FormControl(),
-    chargedescription: new FormControl(),
-    defendantrace: new FormControl(),
-    defendantgender: new FormControl(),
-    radioGroup: new FormControl(),
-    amountOfDrugPossessed: new FormControl(),
-    crimialHistoryCategory: new FormControl(),
-    estimatedSentence: new FormControl(),
-    givenSentence: new FormControl()
-  });
+  defendantAndCaseForm :FormGroup;
 
   constructor(
     protected modalService: ModalService,
-    protected modalSvc: ModalSvc
+    protected modalSvc: ModalSvc,
+    private fb:FormBuilder
   ) {
     super();
+
   }
 
   // init function
   ngOnInit() {
     this.showProgress();
+    
+    this.defendantAndCaseForm = this.fb.group({
+
+      
+        defendantname: new FormControl(),
+        defendantrace: new FormControl(['', Validators.compose(
+          [Validators.required, this.validateSelection]
+        )]),
+        defendantgender: new FormControl(['', Validators.compose(
+          [Validators.required, this.validateSelection]
+        )]    ),
+      
+     
+      // casedescription: new FormControl(),
+      
+      chargeDescription: new FormControl(),
+       radioGroup: new FormControl(),
+      amountOfDrugPossessed: new FormControl(),
+      crimialHistoryCategory:new FormControl(),
+      estimatedSentence: new FormControl(),
+      givenSentence: new FormControl(),
+      
+
+    });
+
+    this.validateDefendantName = this.defendantAndCaseForm.controls['defendantname'];
+    this.validateDefendantGender= this.defendantAndCaseForm.controls['defendantgender'];
+    this.validateDefendantRace = this.defendantAndCaseForm.controls['defendantrace']
+    
+    
+  
+  }
+  validateSelection(control:FormControl){
+      if (control.value.length < 2 ){
+        return {selection:true}
+      }
   }
 
   // charges tag array
@@ -225,28 +252,13 @@ export class ModalComponent extends BaseModal implements OnInit {
 
   // progress indicator update
   showProgress() {
-    this.steps = Array.from(this.defaultSteps);
-    switch (this.stepCounter) {
-      case 'First':
-        this.current = 0;
-        break;
-      case 'Second':
-        this.current = 1;
-        break;
-      default:
-        this.current = 0;
-        break;
-    }
+    this.current = (this.stepCounter === 'First') ? 0:1;
   }
 
   // form next or submit
- goNextOrSave() {
-    this.isValid = this.validateData(this.defendantAndCaseForm.value);
-    if (!this.isValid) {
-      this.message = 'All the fields are required. Please enter the valid information and submit again.';
-    } else {
-      if (this.stepCounter !== 'Second') { // updating modal with second step on progress indicator
-        this.message = undefined;
+  goNextOrSave() {
+
+     if (this.stepCounter !== 'Second') { // updating modal with second step on progress indicator
         this.selectedItemTag = [];
         this.textForButton = 'Finish';
         this.stepCounter = 'Second';
@@ -260,42 +272,23 @@ export class ModalComponent extends BaseModal implements OnInit {
         });
       }
     }
-  }
+  
 
   // radio selection
   radioSelection(selection) {
+    
     if (selection.value === 'yes') {
       // enable view
       this.enableRadioSelection = true;
     } else {
       this.enableRadioSelection = false;
     }
+    
   }
 
-  // form validation
-  validateData(formData): boolean {
-    if (this.stepCounter === 'First') {
-      if (
-        !formData ||
-        !formData.defendantname ||
-        !formData.defendantrace ||
-        !formData.defendantgender
-      ) {
-        return false;
-      }
-      return true;
-    } else {
-      if (this.selectedItemTag.length > 0) {
-        formData.chargedescription = this.selectedItemTag;
-      }
-      if (
-        !formData ||
-        !formData.chargedescription || !formData.amountOfDrugPossessed ||
-        !formData.crimialHistoryCategory || !formData.estimatedSentence || !formData.givenSentence
-      ) {
-        return false;
-      }
-      return true;
+  chargeDescriptionFilterTag(){
+    if (this.selectedItemTag.length > 0) {
+      this.defendantAndCaseForm.value.chargeDescription = this.selectedItemTag;
     }
   }
 }
