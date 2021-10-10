@@ -1,6 +1,6 @@
 # Open Sentencing User Interface (UI)
 
-[![License](https://img.shields.io/badge/License-Apache2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) [![Community](https://img.shields.io/badge/Join-Community-blue.svg)](https://developer.ibm.com/callforcode/racial-justice/get-started/)
+[![License](https://img.shields.io/badge/License-Apache2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) [![Community](https://img.shields.io/badge/Join-Community-blue.svg)](https://callforcode.org/slack) [![Hacktoberfest](https://img.shields.io/badge/Celebrate-Hacktoberfest-orange.svg)](https://call-for-code-for-racial-justice.github.io/Hacktoberfest/#/?id=main)
 
 The User Interface (UI) provided is meant to allow public defenders or others an ability to easily review contents of a case to determine when bias was detected. Since public defenders are so busy we wanted this to be an item that could be utilized very quickly and easily. No knowledge of the programming behind the tool is needed for an end user.
 
@@ -49,7 +49,17 @@ The [Invision Prototype](https://ibm.invisionapp.com/share/Q5O0KIVUNE8#/screens)
 
 ### Configure the application
 
-Fill out the App ID credentials in `web/src/app/services/appid-authentication.service.ts`. You can obtain the values from the `Service credentials` tab on the main page of your service instance.
+Fill out the App ID credentials in `web/src/app/services/appid-authentication.service.ts`. To obtain the credentials, complete the following 3 steps:
+
+1. Add new application in your App ID service. Select "Single-page application" from Type drowdown. 
+
+![](images/spa_instruction.png)
+
+2. Register `http://localhost:4200/*` or other redirect_uri you trust to a list of authorized clients.
+
+![](images/redirect_URI_instruction.png)
+
+3. Now you can obtain the values from the `Service credentials` tab on the main page of your service instance.
 
 ![](images/creds.png)
 
