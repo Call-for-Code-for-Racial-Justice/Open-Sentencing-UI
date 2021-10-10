@@ -30,7 +30,7 @@ import {
   
 } from 'carbon-components-angular';
 
-import { SettingsModule, DeleteModule, SaveModule, DownloadModule, AddModule, DocumentModule, IdeaModule, ReportDataModule
+import { SettingsModule, DeleteModule, SaveModule, DownloadModule, AddModule, DocumentModule, IdeaModule, ReportDataModule, FolderAddModule
 } from '@carbon/icons-angular';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -111,7 +111,9 @@ export function tokenGetter() {
     AddModule,
     DocumentModule,
     IdeaModule,
-    ReportDataModule
+    ReportDataModule,
+    FolderAddModule
+
     
     
   ],

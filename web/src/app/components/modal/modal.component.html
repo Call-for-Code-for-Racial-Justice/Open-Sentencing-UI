@@ -1,6 +1,6 @@
 <ibm-modal size="sm" (overlaySelected)="closeModal()">
     <ibm-modal-header (closeSelect)="closeModal()">
-        <h4 ibmModalHeaderHeading>Add a new case</h4>
+        <h4 ibmModalHeaderHeading> <svg ibmIconFolderAdd size="32"></svg> Add a new case</h4>
         <p>Specify the high level details of the case</p>
     </ibm-modal-header>
     <section  ibmModalContent hasForm="true">
@@ -10,7 +10,7 @@
         </ibm-progress-indicator>
         </div>
 
-        <form [formGroup]="defendantAndCaseForm">
+        <form [formGroup]="defendantAndCaseForm" class="modal-container--padding">
             <div  *ngIf="stepCounter ==='First'" > 
                 <ibm-label [invalid]="" invalidText="Please enter the defendant's name."  class="modal-layout-padding">
                     <label>Defendant Name</label>
