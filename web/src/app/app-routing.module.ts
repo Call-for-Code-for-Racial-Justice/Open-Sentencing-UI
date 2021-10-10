@@ -14,7 +14,7 @@ import { EmbraceHomeComponent } from './components/embrace/embrace-home/embrace-
 const routes: Routes = [
   {
     path: 'cases', component: CaseComponent,
-  //canActivate: [AuthenticatedUserGuard]
+  canActivate: [AuthenticatedUserGuard]
   },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
