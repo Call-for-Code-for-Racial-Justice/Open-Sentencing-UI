@@ -13,11 +13,10 @@ import { AuthCallbackComponent } from './components/auth-callback/auth-callback.
 const routes: Routes = [
   {
     path: 'cases', component: CaseComponent,
-    canActivate: [AuthenticatedUserGuard]
+   canActivate: [AuthenticatedUserGuard]
   },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'embrace', component: EmbraceComponent },
   { path: 'auth-callback', component: AuthCallbackComponent },
   { path: '', redirectTo: 'cases', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: CaseComponent}
