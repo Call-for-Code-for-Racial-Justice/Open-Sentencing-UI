@@ -1,4 +1,6 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestCarbonComponentsAngularModule } from 'src/test-carbon-components-angular.module';
 
 import { CaseComponent } from './cases.component';
 
@@ -8,7 +10,9 @@ describe('EmbraceComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CaseComponent ]
+      imports: [TestCarbonComponentsAngularModule],
+      declarations: [ CaseComponent ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));
