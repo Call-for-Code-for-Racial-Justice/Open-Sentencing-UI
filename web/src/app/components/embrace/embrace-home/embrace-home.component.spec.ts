@@ -1,4 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+import { UIShellModule } from 'carbon-components-angular/ui-shell/ui-shell.module';
 
 import { EmbraceHomeComponent } from './embrace-home.component';
 
@@ -8,7 +11,10 @@ describe('EmbraceHomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EmbraceHomeComponent ]
+      imports:[UIShellModule],
+      declarations: [ EmbraceHomeComponent ],
+      schemas: [NO_ERRORS_SCHEMA]
+
     })
     .compileComponents();
   }));

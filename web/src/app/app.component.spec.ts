@@ -3,16 +3,22 @@ import { async, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-
+import { UIShellModule } from 'carbon-components-angular/ui-shell/ui-shell.module';
+import { EmbraceHomeComponent } from './components/embrace/embrace-home/embrace-home.component';
+import { EmbraceComponent } from './components/embrace/embrace.component';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
-      ],
+        RouterTestingModule, 
+        UIShellModule
+            ],
       declarations: [
         AppComponent,
-        HeaderComponent
+        HeaderComponent,
+        EmbraceHomeComponent,
+        EmbraceComponent,
+        
       ],
       schemas: [NO_ERRORS_SCHEMA]
 
