@@ -1,115 +1,158 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h3>Submit New Request to Process</h3>
-            <hr/>
-            <div *ngIf="!isValid" class="alert alert-danger">
-                {{message}}
-            </div>
-            <div *ngIf="isValid && message !== undefined" class="alert alert-success">
-                Sentencing Discrepancy in Years due to Bias: {{message}}
-            </div>
-            <form [formGroup]="submitOffenseForm" (ngSubmit)="onSubmit()">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="chargeCount">CHARGE COUNT</label>
-                        <input type="number" class="form-control" formControlName="chargeCount" id="chargeCount" name="chargeCount" aria-describedby="chargeCountHelp" placeholder="Charge Count">
-                        <small id="chargeCountHelp" class="form-text text-muted">Total Charge Counts</small>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="chargeDisposition">CHARGE DISPOSITION</label>
-                        <input type="text" class="form-control" formControlName="chargeDisposition" id="chargeDisposition" name="chargeDisposition" aria-describedby="chargeDispositionHelp" placeholder="Charge Disposition">
-                        <small id="chargeDispositionHelp" class="form-text text-muted">Charge Disposition</small>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="offenseCategory">OFFENSE CATEGORY</label>
-                        <input type="text" class="form-control" formControlName="offenseCategory" id="offenseCategory" name="offenseCategory" aria-describedby="offenseCategoryHelp" placeholder="Offense Category">
-                        <small id="offenseCategoryHelp" class="form-text text-muted">Offense Category (i.e ...)</small>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="primaryChargeFlag">PRIMARY CHARGE FLAG</label>
-                        <select id="primaryChargeFlag" class="form-control" formControlName="primaryChargeFlag">
-                          <option value="NONE" disabled hidden>Select your option</option>
-                          <option value="true">YES</option>
-                          <option value="false">NO</option>
-                        </select>
-                        <small id="primaryChargeFlagHelp" class="form-text text-muted">(Note: If this is primary charge, then YES, else NO)</small>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="dispositionChargedOffenseTitle">DISPOSITION CHARGED OFFENSE TITLE</label>
-                        <input type="text" class="form-control" formControlName="dispositionChargedOffenseTitle" id="dispositionChargedOffenseTitle" name="dispositionChargedOffenseTitle" aria-describedby="dispositionChargedOffenseTitleHelp" placeholder="Disposition Charged Offense Title">
-                        <small id="dispositionChargedOffenseTitleHelp" class="form-text text-muted">Offense title...</small>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="dispositionChargedClass">DISPOSITION CHARGED CLASS</label>
-                        <input type="text" class="form-control" formControlName="dispositionChargedClass" id="dispositionChargedClass" name="dispositionChargedClass" aria-describedby="dispositionChargedClassHelp" placeholder="Disposition Charged Class">
-                        <small id="dispositionChargedClassHelp" class="form-text text-muted">Charged Class...</small>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="sentenceJudge">SENTENCE JUDGE</label>
-                        <input type="text" class="form-control" formControlName="sentenceJudge" id="sentenceJudge" name="sentenceJudge" aria-describedby="sentenceJudgeHelp" placeholder="Sentence Judge">
-                        <small id="sentenceJudgeHelp" class="form-text text-muted">Sentence Judge...</small>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="sentencePhase">SENTENCE PHASE</label>
-                        <input type="text" class="form-control" formControlName="sentencePhase" id="sentencePhase" name="sentencePhase" aria-describedby="sentencePhaseHelp" placeholder="Sentence Phase">
-                        <small id="sentencePhaseHelp" class="form-text text-muted">Sentence Phase...</small>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="commitmentTerm">COMMITMENT TERM</label>
-                        <input type="string" class="form-control" formControlName="commitmentTerm" id="commitmentTerm" name="commitmentTerm" aria-describedby="commitmentTermHelp" placeholder="Commitment Term">
-                        <small id="commitmentTermHelp" class="form-text text-muted">Commitment Term...</small>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="commitmentUnit">COMMITMENT UNIT</label>
-                        <input type="text" class="form-control" formControlName="commitmentUnit" id="commitmentUnit" name="commitmentUnit" aria-describedby="commitmentUnitHelp" placeholder="Commitment Unit">
-                        <small id="commitmentUnitHelp" class="form-text text-muted">Commitment Unit...</small>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="lengthOfCase">LENGTH OF CASE in Days</label>
-                        <input type="number" class="form-control" formControlName="lengthOfCase" id="lengthOfCase" name="lengthOfCase" aria-describedby="lengthOfCaseHelp" placeholder="Length Of Case in Days">
-                        <small id="lengthOfCaseHelp" class="form-text text-muted">Length of Case in Days...</small>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="ageAtIncident">AGE AT INCIDENT</label>
-                        <input type="number" class="form-control" formControlName="ageAtIncident" id="ageAtIncident" name="ageAtIncident" aria-describedby="ageAtIncidentHelp" placeholder="Age at Incident">
-                        <small id="ageAtIncidentHelp" class="form-text text-muted">Age at Incident...</small>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="race">RACE</label>
-                        <input type="text" class="form-control" formControlName="race" id="race" name="race" aria-describedby="raceHelp" placeholder="Race">
-                        <small id="raceHelp" class="form-text text-muted">Please enter Race (i.e Caucasian, Asian, African-American etc)...</small>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="gender">GENDER</label>
-                        <input type="text" class="form-control" formControlName="gender" id="gender" name="gender" aria-describedby="genderHelp" placeholder="Gender">
-                        <small id="genderHelp" class="form-text text-muted">Gender...</small>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="incidentCity">INCIDENT CITY</label>
-                        <input type="text" class="form-control" formControlName="incidentCity" id="incidentCity" name="incidentCity" aria-describedby="incidentCityHelp" placeholder="Incident City">
-                        <small id="incidentCityHelp" class="form-text text-muted">Incident City...</small>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="lawEnforcementAgency">LAW ENFORCEMENT AGENCY</label>
-                        <input type="text" class="form-control" formControlName="lawEnforcementAgency" id="lawEnforcementAgency" name="lawEnforcementAgency" aria-describedby="lawEnforcementAgencyHelp" placeholder="Law Enforcement Agency">
-                        <small id="lawEnforcementAgencyHelp" class="form-text text-muted">Law Enforcement Agency...</small>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="lawEnforcementUnit">LAW ENFORCEMENT UNIT</label>
-                        <input type="text" class="form-control" formControlName="lawEnforcementUnit" id="lawEnforcementUnit" name="lawEnforcementUnit" aria-describedby="lawEnforcementUnitHelp" placeholder="Law Enforcement Unit">
-                        <small id="lawEnforcementUnitHelp" class="form-text text-muted">Law Enforcement Unit...</small>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="sentenceType">SENTENCE TYPE</label>
-                        <input type="text" class="form-control" formControlName="sentenceType" id="sentenceType" name="sentenceType" aria-describedby="sentenceTypeHelp" placeholder="Sentence Type">
-                        <small id="sentenceTypeHelp" class="form-text text-muted">Sentence Type...</small>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <div class="hidden">
-                </div>
-            </form>
+
+<div class=" embrace_form--container wrapper-layout" >
+
+
+
+    <form class="embrace_form" ibmCol [columnNumbers]="{ lg: 12, md: 6, sm: 4 }" [formGroup]="submitOffenseForm" (ngSubmit)="onSubmit()">
+        <section class="embrace_header-toolbar" ibmRow ibmCol [columnNumbers]="{ lg: 12, md: 6, sm: 4 }" >
+
+            <p>{{caseId}}</p>
+            <span >Submit new request to process</span>
+            
+    
+    
+    
+    </section>
+    <hr>
+        <div class="embrace_form--spacing embrace_form--field" ibmRow>
+            <ibm-label ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }">
+                <label>Charge Count</label>
+                <input type="number" ibmText id="originator-email-input" theme="light" label="Charge Count" />
+            </ibm-label>
+
+
+            <ibm-label ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }">
+                <label for="">Charge Disposition</label>
+                <input type="text" ibmText theme="light" formControlName="chargeDisposition" id="chargeDisposition"
+                    name="chargeDisposition" aria-describedby="chargeDispositionHelp" placeholder="Charge Disposition"
+                    required />
+            </ibm-label>
+
+            <ibm-label ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }">
+                <label for="">Offense category</label>
+                <input type="text" ibmText id="originator-email-input" theme="light" />
+            </ibm-label>
+
         </div>
-    </div>
-</div>
+        <div class="embrace_form--spacing" ibmRow>
+            <ibm-select ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }" id="primaryChargeFlag"
+                formControlName="primaryChargeFlag" label="Is this the primary charge" theme="light">
+
+                <option value="NONE" disabled hidden>Select your option</option>
+                <option value="true">YES</option>
+                <option value="false">NO</option>
+            </ibm-select>
+
+            <ibm-label ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }">
+                <label for="">Disposition charged offense title</label>
+                <input ibmText type="text" formControlName="dispositionChargedOffenseTitle"
+                    id="dispositionChargedOffenseTitle" name="dispositionChargedOffenseTitle"
+                    aria-describedby="dispositionChargedOffenseTitleHelp"
+                    placeholder="Disposition Charged Offense Title" theme="light">
+            </ibm-label>
+            <ibm-label ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }">
+                <label for="">Disposition Charge Class</label>
+                <input ibmText type="text" formControlName="dispositionChargedClass" theme="light"
+                    id="dispositionChargedClass" name="dispositionChargedClass"
+                    aria-describedby="dispositionChargedClassHelp" placeholder="Enter a Charge Class">
+            </ibm-label>
+        </div>
+
+        <div class="embrace_form--spacing" ibmRow>
+            <ibm-label ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }">
+                <label for="sentenceJudge">Sentence Judge</label>
+                <input ibmText type="text" formControlName="sentenceJudge" id="sentenceJudge" name="sentenceJudge"
+                    ria-describedby="sentenceJudgeHelp" placeholder="Sentence Judge" theme="light">
+            </ibm-label>
+
+            <ibm-label ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }">
+                <label for="sentencePhase">Sentence Phase</label>
+                <input ibmText type="text" formControlName="sentencePhase" id="sentencePhase" name="sentencePhase"
+                    aria-describedby="sentencePhaseHelp" placeholder="Enter sentence phase" theme="light">
+            </ibm-label>
+
+
+            <ibm-label ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }">
+                <label for="">Commitment term</label>
+                <input ibmText type="text" id="commitmentTerm" aria-describedby="commitmentTermHelp"
+                    name="commitmentTerm" formControlName="commitmentTerm" placeholder="Enter a commitment term"
+                    theme="light">
+            </ibm-label>
+        </div>
+        <div ibmRow class="embrace_form--spacing">
+            <ibm-label ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }">
+                <label for="commitmentUnit">Commitment Unit</label>
+                <input type="text" ibmText formControlName="commitmentUnit" id="commitmentUnit" name="commitmentUnit"
+                    aria-describedby="commitmentUnitHelp" placeholder="Commitment Unit" theme="light">
+            </ibm-label>
+            <ibm-label ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }">
+                <label for="lengthOfCase">Length of case (days)</label>
+                <input ibmText type="number" formControlName="lengthOfCase" id="lengthOfCase" name="lengthOfCase"
+                    aria-describedby="lengthOfCaseHelp" placeholder="Length Of Case in Days" theme="light">
+            </ibm-label>
+
+            <ibm-label ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }">
+                <label for="ageAtIncident">Age at incident</label>
+                <input type="number" ibmText formControlName="ageAtIncident" id="ageAtIncident" name="ageAtIncident"
+                    aria-describedby="ageAtIncidentHelp" placeholder="Age at Incident" theme="light">
+            </ibm-label>
+
+
+        </div>
+        <div ibmRow class="embrace_form--spacing">
+            <ibm-select ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }" formControlName="race" id="race" name="race"
+                aria-describedby="raceHelp" placeholder="Race" label="Race" theme="light">
+                <option value="Male">Female</option>
+                <option value="male">Male</option>
+                <option value="other">Other</option>
+            </ibm-select>
+            <ibm-select ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }" formControlName="gender" id="gender"
+                name="gender" aria-describedby="genderHelp" placeholder="Gender" label="Gender" theme="light">
+                <label for="gender">GENDER</label>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+                <option value="other">Other</option>
+            </ibm-select>
+
+            <ibm-label ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }">
+                <label for="incidentCity">Incident City</label>
+                <input ibmText type="text" formControlName="incidentCity" id="incidentCity" name="incidentCity"
+                    aria-describedby="incidentCityHelp" placeholder="Incident City" theme="light">
+            </ibm-label>
+
+
+        </div>
+        <div ibmRow class="embrace_form--spacing">
+            <ibm-label ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }">
+                <label for="lawEnforcementAgency">Law Inforcement Agency</label>
+                <input ibmText type="text" formControlName="lawEnforcementAgency" id="lawEnforcementAgency"
+                    name="lawEnforcementAgency" aria-describedby="lawEnforcementAgencyHelp"
+                    placeholder="Law Enforcement Agency" theme="light">
+            </ibm-label>
+
+            <ibm-label ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }">
+                <label for="lawEnforcementUnit">Law Enforcement Unit</label>
+                <input ibmText type="text" formControlName="lawEnforcementUnit" id="lawEnforcementUnit"
+                    name="lawEnforcementUnit" aria-describedby="lawEnforcementUnitHelp"
+                    placeholder="Law Enforcement Unit" theme="light">
+            </ibm-label>
+            <ibm-label ibmCol [columnNumbers]="{ lg: 4, md: 6, sm: 4 }">
+                <label for="sentenceType">Sentence Type</label>
+                <input ibmText type="text"  formControlName="sentenceType" id="sentenceType"
+                    name="sentenceType" aria-describedby="sentenceTypeHelp" placeholder="Sentence Type" theme="light">
+            </ibm-label>
+
+        </div>
+        <div ibmRow class="bx--btn-set embrace_button" ibmCol [columnNumbers]="{ lg: 12, md: 6, sm: 4 }">
+            <button ibmButton="secondary">Clear</button>
+            <button [disabled]="!this.submitOffenseForm.valid" ibmButon ibmButton="primary">Submit</button>
+    
+        </div>
+
+    </form>
+
+
+    <div>
+
+
+   

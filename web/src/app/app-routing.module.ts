@@ -8,18 +8,21 @@ import { AuthenticatedUserGuard } from './guards/authenticate-user.guard';
 import { EmbraceComponent } from './components/embrace/embrace.component';
 import { CaseComponent } from './components/cases/cases.component';
 import { AuthCallbackComponent } from './components/auth-callback/auth-callback.component';
+import { EmbraceHomeComponent } from './components/embrace/embrace-home/embrace-home.component';
 
 
 const routes: Routes = [
   {
     path: 'cases', component: CaseComponent,
-   canActivate: [AuthenticatedUserGuard]
+  canActivate: [AuthenticatedUserGuard]
   },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
+  { path: 'embrace', component: EmbraceHomeComponent },
   { path: 'auth-callback', component: AuthCallbackComponent },
   { path: '', redirectTo: 'cases', pathMatch: 'full' },
   { path: '**', pathMatch: 'full', component: CaseComponent}
+  
 ];
 
 @NgModule({

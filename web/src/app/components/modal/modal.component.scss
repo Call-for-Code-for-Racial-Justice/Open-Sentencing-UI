@@ -18,18 +18,14 @@ color: #161616;
 font-weight: 400;
 
 }
-
+.modal-input--margin-sides{
+    padding-left:1.5rem;
+    padding-right: 1.5rem;
+}
 .modal-input--container {
     display: flex;
    
 }
 .modal-disclaimer--text {
     font-style: italic;
-    
-
-}
-
-.k{
-border:red solid 2px;
-width: 100%;
 }

@@ -11,7 +11,7 @@ export class EmbraceComponent implements OnInit {
   submitOffenseForm;
   isValid = true;
   message: string;
-
+  caseId="132131"
   constructor(private embraceService: EmbraceService) {
     this.initialize();
   }

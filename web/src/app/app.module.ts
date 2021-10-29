@@ -26,10 +26,11 @@ import {
   PlaceholderModule,
   DialogModule,
   UIShellModule,
-  ProgressIndicatorModule
+  ProgressIndicatorModule,
+  
 } from 'carbon-components-angular';
 
-import { SettingsModule, DeleteModule, SaveModule, DownloadModule, AddModule, DocumentModule
+import { SettingsModule, DeleteModule, SaveModule, DownloadModule, AddModule, DocumentModule, IdeaModule, ReportDataModule, FolderAddModule
 } from '@carbon/icons-angular';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -45,6 +46,7 @@ import { EmbraceComponent } from './components/embrace/embrace.component';
 import { CaseComponent } from './components/cases/cases.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { AuthCallbackComponent } from './components/auth-callback/auth-callback.component';
+import { EmbraceHomeComponent } from './components/embrace/embrace-home/embrace-home.component';
 
 export function tokenGetter() {
   return localStorage.getItem('user_token');
@@ -62,7 +64,9 @@ export function tokenGetter() {
     EmbraceComponent,
     CaseComponent,
     ModalComponent,
-    AuthCallbackComponent
+    AuthCallbackComponent,
+    EmbraceHomeComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -105,7 +109,13 @@ export function tokenGetter() {
     SaveModule,
     DownloadModule,
     AddModule,
-    DocumentModule
+    DocumentModule,
+    IdeaModule,
+    ReportDataModule,
+    FolderAddModule
+
+    
+    
   ],
   entryComponents: [ModalComponent],
   providers: [AuthenticatedUserGuard],
