@@ -55,11 +55,11 @@ Fill out the App ID credentials in `web/src/app/services/appid-authentication.se
 
 ![](images/spa_instruction.png)
 
-2. Register `http://localhost:4200/*` or other redirect_uri you trust to a list of authorized clients.
+2. Register `http://localhost:4200/*` or other redirect_uri you trust to a list of authorized clients. This should be the uri your app uses, eg, `https://localhost:8080/*`
 
 ![](images/redirect_URI_instruction.png)
 
-3. Now you can obtain the values from the `Service credentials` tab on the main page of your service instance.
+3. Now you can obtain the values from the `Applications` tab on the main page of your service instance.
 
 ![](images/creds.png)
 
