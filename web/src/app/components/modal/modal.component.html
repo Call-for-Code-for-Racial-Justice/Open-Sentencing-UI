@@ -28,9 +28,8 @@
                     <ibm-select ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}"
                         id="defendantrace" [invalid]=""  invalidText="Select the defendant's race" name="defendantrace" aria-describedby="defendantraceHelp"
                         placeholder="Defendant race" label="Defendant Race" formControlName="defendantrace" required>
-                        <option value="female">Female</option>
-                        <option value="male">Male</option>
-                        <option value="other">Other</option>
+                        <option selected hidden>Choose defendant's race</option>
+                        <option *ngFor="let race of raceOptions" [value]="race[0]">{{race[1]}}</option>
                     </ibm-select>
 
 

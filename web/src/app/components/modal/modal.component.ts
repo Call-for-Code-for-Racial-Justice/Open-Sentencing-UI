@@ -4,6 +4,7 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { BaseModal, ListItem, ModalService } from 'carbon-components-angular';
 import { ModalSvc } from './modal.service';
 import { Subject } from 'rxjs';
+import { Race } from 'src/app/models/client/Race';
 
 @Component({
   selector: 'app-sample-modal',
@@ -16,6 +17,7 @@ export class ModalComponent extends BaseModal implements OnInit {
   tempTagFilter = [];
   filterCharge = [];
   selectedItemTag = [];
+  raceOptions = Object.entries(Race);
   public searchText = new Subject<string>();
 
   
