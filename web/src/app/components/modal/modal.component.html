@@ -43,7 +43,7 @@
                         invalidText="Defendant's gender is required"
                         [invalid]="isFormControlInvalid('defendantGender')" 
                         required>
-                         <option selected hidden>Choose a gender</option>
+                         <option selected hidden>Select gender</option>
                          <option *ngFor="let entry of genderOptions" [value]="entry[0]">{{entry[1]}}</option>
                     </ibm-select>
                 </div>
