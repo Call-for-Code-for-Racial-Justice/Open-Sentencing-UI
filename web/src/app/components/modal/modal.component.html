@@ -33,17 +33,19 @@
                         <option value="other">Other</option>
                     </ibm-select>
 
-
-
-                    <ibm-select ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}" 
-                        id="defendantgender"formControlName="defendantgender"  name="defendantgender" aria-describedby="defendantg"
-                        placeholder="Defendant gender" label="Defendant Gender" [invalid]="">
-                        <option value="female">Female</option>
-                        <option value="male">Male</option>
-                        <option value="other">Other</option>
+                    <ibm-select 
+                        ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}" 
+                        id="defendant-gender-id" 
+                        formControlName="defendantGender"  
+                        name="defendantGender" 
+                        aria-describedby="defendantGenderHelp"
+                        label="Defendant Gender" 
+                        invalidText="Defendant's gender is required"
+                        [invalid]="isFormControlInvalid('defendantGender')" 
+                        required>
+                         <option selected hidden>Select gender</option>
+                         <option *ngFor="let entry of genderOptions" [value]="entry[0]">{{entry[1]}}</option>
                     </ibm-select>
-                  
-          
                 </div>
 
             </div>
@@ -141,10 +143,10 @@
         <button class="bx--btn bx--btn--secondary" (click)="closeModal() ">
             Cancel
         </button>
-   <button  *ngIf="stepCounter === 'First'" [disabled]="!this.defendantAndCaseForm.valid || this.validateDefendantRace.value[0] == '' || this.validateDefendantGender.value[0] == ''"  class="bx--btn bx--btn--primary" modal-primary-focus (click)="goNextOrSave() ">
+   <button *ngIf="stepCounter === 'First'" [disabled]="!this.defendantAndCaseForm.valid || this.validateDefendantRace.value[0] == '' || this.validateDefendantGender.value[0] == ''"  class="bx--btn bx--btn--primary" modal-primary-focus (click)="goNextOrSave() ">
             {{textForButton}}
         </button>
-        <button  *ngIf="stepCounter === 'Second'" [disabled]="this.validateFilter.value === null"  class="bx--btn bx--btn--primary" modal-primary-focus (click)="closeModal()">
+        <button  *ngIf="stepCounter === 'Second'" [disabled]="this.validateFilter.value === null"  class="bx--btn bx--btn--primary" modal-primary-focus (click)="goNextOrSave()">
             Finish
         </button>
     </ibm-modal-footer>
