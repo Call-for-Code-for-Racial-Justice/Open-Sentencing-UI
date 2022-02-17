@@ -21,7 +21,6 @@ export class ModalComponent extends BaseModal implements OnInit {
   public searchText = new Subject<string>();
 
   genderOptions:string[][] = Object.entries(Gender);
-  validGenderSelected: boolean = true;
 
   genderIsSelected
   raceIsSelected
