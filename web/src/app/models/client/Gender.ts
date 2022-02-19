@@ -2,7 +2,7 @@ export const Gender = {
   FEMALE: "Female",
   MALE: "Male",
   OTHER: "Other",
-  UNKNOWN: "Unkown"
+  UNKNOWN: "Unknown"
 }
 
 export function isValidGender(gender: string): boolean {

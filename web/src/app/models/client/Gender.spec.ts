@@ -26,6 +26,7 @@ describe('isValidGender', ()=> {
     'female',
     'other',
     'unknown',
+    'Unkown',
     'maLe',
     'feMale',
     'otHer',
