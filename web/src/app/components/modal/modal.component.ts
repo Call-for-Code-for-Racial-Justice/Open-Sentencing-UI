@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { BaseModal, ListItem, ModalService } from 'carbon-components-angular';
 import { ModalSvc } from './modal.service';
 import { Subject } from 'rxjs';
 import { Race } from 'src/app/models/client/Race';
+import { Gender } from 'src/app/models/client/Gender';
+import { validateGender } from './validation/GenderValidators';
 
 @Component({
   selector: 'app-sample-modal',
@@ -20,10 +22,10 @@ export class ModalComponent extends BaseModal implements OnInit {
   raceOptions = Object.entries(Race);
   public searchText = new Subject<string>();
 
-  
+  genderOptions:string[][] = Object.entries(Gender);
 
-   genderIsSelected
-   raceIsSelected
+  genderIsSelected
+  raceIsSelected
 
   // charges record
   charges = [
@@ -173,7 +175,6 @@ export class ModalComponent extends BaseModal implements OnInit {
     protected modalService: ModalService,
     protected modalSvc: ModalSvc,
     private fb:FormBuilder,
-    
   ) {
     super();
 
@@ -184,19 +185,21 @@ export class ModalComponent extends BaseModal implements OnInit {
    
     this.showProgress();
     
+    const initialGender = '';
 
     this.defendantAndCaseForm = this.fb.group({
-
-      
         defendantname: new FormControl(),
         defendantrace: new FormControl(['', Validators.compose(
           [Validators.required, this.validateSelection]
         )]),
-        defendantgender: new FormControl(['', Validators.compose(
-          [Validators.required, this.validateSelection]
-        )]    ),
-      
-     
+        defendantGender: new FormControl(initialGender, {
+          validators: [
+            Validators.required, 
+            Validators.minLength(1), 
+            validateGender
+          ]
+        }),
+
       // casedescription: new FormControl(),
        chargeFilterInput: new FormControl(),
         chargeDescription: new FormControl(),
@@ -213,11 +216,9 @@ export class ModalComponent extends BaseModal implements OnInit {
      
 
     this.validateDefendantName = this.defendantAndCaseForm.controls['defendantname'];
-    this.validateDefendantGender= this.defendantAndCaseForm.controls['defendantgender'];
+    this.validateDefendantGender= this.defendantAndCaseForm.controls.defendantGender;
     this.validateDefendantRace = this.defendantAndCaseForm.controls['defendantrace']
     this.validateFilter = this.defendantAndCaseForm.controls['chargeFilterInput']
- 
-  
   }
   
   validateSelection(control:FormControl){
@@ -281,11 +282,16 @@ export class ModalComponent extends BaseModal implements OnInit {
       } else {
         this.showProgress();
         this.modalSvc.submitForm(this.defendantAndCaseForm.value)
-        .subscribe((data: any) =>  {
-          // wait for data success and then close modal
-          this.modalService.destroy()
-          this.closeModal()
-        });
+        .subscribe((data: any) => {
+            // wait for data success and then close modal
+            this.modalService.destroy()
+            this.closeModal();
+          },
+          (err) => {
+            console.error('Error: ' + JSON.stringify(err));
+            this.modalService.destroy()
+            this.closeModal();
+          });
       }
     }
   
@@ -308,11 +314,13 @@ export class ModalComponent extends BaseModal implements OnInit {
     }
   }
 
-  validateCasedetails(){
-    
+  validateCasedetails(){   
       this.caseDetailsIsSelected = this.validateDefendantRace.value[0] == ''; 
       this.genderIsSelected = this.validateDefendantGender.value[0] == '';
-      
-  
-}
+  }
+
+  private isFormControlInvalid(formControlName: string): boolean {
+    return this.defendantAndCaseForm.get(formControlName).touched && 
+      this.defendantAndCaseForm.get(formControlName).invalid;
+  }
 }
