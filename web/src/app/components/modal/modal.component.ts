@@ -217,6 +217,9 @@ export class ModalComponent extends BaseModal implements OnInit {
     this.validateDefendantGender= this.defendantAndCaseForm.controls.defendantGender;
     this.validateDefendantRace = this.defendantAndCaseForm.controls['defendantrace']
     this.validateFilter = this.defendantAndCaseForm.controls['chargeFilterInput']
+    this.charges.forEach(charge => {
+      this.filterCharge.push({id: charge, content: charge, selected: false})
+    })
   }
   
   validateSelection(control:FormControl){
@@ -245,7 +248,7 @@ export class ModalComponent extends BaseModal implements OnInit {
     this.searchText.pipe(
       debounceTime(100),
       distinctUntilChanged(),
-      switchMap((query) =>  this._filter(query))
+      switchMap((query?) =>  this._filter(query))
     )
     .subscribe(val => {
       if (val) {
