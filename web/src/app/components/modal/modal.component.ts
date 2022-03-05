@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { Race } from 'src/app/models/client/Race';
 import { Gender } from 'src/app/models/client/Gender';
 import { validateGender } from './validation/GenderValidators';
+import { validateRace } from './validation/RaceValidators';
 
 @Component({
   selector: 'app-sample-modal',
@@ -19,10 +20,11 @@ export class ModalComponent extends BaseModal implements OnInit {
   tempTagFilter = [];
   filterCharge = [];
   selectedItemTag = [];
-  raceOptions = Object.entries(Race);
+
   public searchText = new Subject<string>();
 
   genderOptions:string[][] = Object.entries(Gender);
+  raceOptions:string[][] = Object.entries(Race);
 
   genderIsSelected
   raceIsSelected
@@ -186,12 +188,17 @@ export class ModalComponent extends BaseModal implements OnInit {
     this.showProgress();
     
     const initialGender = '';
+    const initialRace = '';
 
     this.defendantAndCaseForm = this.fb.group({
         defendantname: new FormControl(),
-        defendantrace: new FormControl(['', Validators.compose(
-          [Validators.required, this.validateSelection]
-        )]),
+        defendantRace: new FormControl(initialRace, {
+          validators: [
+            Validators.required,
+            Validators.minLength(1),
+            validateRace
+          ]
+        }),
         defendantGender: new FormControl(initialGender, {
           validators: [
             Validators.required, 
@@ -217,7 +224,7 @@ export class ModalComponent extends BaseModal implements OnInit {
 
     this.validateDefendantName = this.defendantAndCaseForm.controls['defendantname'];
     this.validateDefendantGender= this.defendantAndCaseForm.controls.defendantGender;
-    this.validateDefendantRace = this.defendantAndCaseForm.controls['defendantrace']
+    this.validateDefendantRace = this.defendantAndCaseForm.controls.defendantRace;
     this.validateFilter = this.defendantAndCaseForm.controls['chargeFilterInput']
   }
   

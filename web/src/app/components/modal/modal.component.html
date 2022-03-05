@@ -25,10 +25,17 @@
                 </ibm-label>
                 <div class="modal-input--container modal-layout-margin--bottom">
 
-                    <ibm-select ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}"
-                        id="defendantrace" [invalid]=""  invalidText="Select the defendant's race" name="defendantrace" aria-describedby="defendantraceHelp"
-                        placeholder="Defendant race" label="Defendant Race" formControlName="defendantrace" required>
-                        <option selected hidden>Choose defendant's race</option>
+                    <ibm-select 
+                        ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}"
+                        id="defendantFace"
+                        formControlName="defendantRace" 
+                        name="defendantRace"
+                        aria-describedby="defendantRaceHelp"
+                        label="Defendant Race"
+                        invalidText="Defendant's race is required"
+                        [invalid]="isFormControlInvalid('defendantRace')"
+                        required>
+                        <option selected hidden>Select defendant's race</option>
                         <option *ngFor="let race of raceOptions" [value]="race[0]">{{race[1]}}</option>
                     </ibm-select>
 
