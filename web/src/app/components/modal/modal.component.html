@@ -25,12 +25,18 @@
                 </ibm-label>
                 <div class="modal-input--container modal-layout-margin--bottom">
 
-                    <ibm-select ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}"
-                        id="defendantrace" [invalid]=""  invalidText="Select the defendant's race" name="defendantrace" aria-describedby="defendantraceHelp"
-                        placeholder="Defendant race" label="Defendant Race" formControlName="defendantrace" required>
-                        <option value="female">Female</option>
-                        <option value="male">Male</option>
-                        <option value="other">Other</option>
+                    <ibm-select 
+                        ibmCol [columnNumbers]="{'lg': 8, 'md': 8, 'sm': 4}"
+                        id="defendantFace"
+                        formControlName="defendantRace" 
+                        name="defendantRace"
+                        aria-describedby="defendantRaceHelp"
+                        label="Defendant Race"
+                        invalidText="Defendant's race is required"
+                        [invalid]="isFormControlInvalid('defendantRace')"
+                        required>
+                        <option selected hidden>Select defendant's race</option>
+                        <option *ngFor="let race of raceOptions" [value]="race[0]">{{race[1]}}</option>
                     </ibm-select>
 
                     <ibm-select 
@@ -52,7 +58,7 @@
             <div  class="modal-layout-margin--bottom " *ngIf="stepCounter === 'Second'">
                 <div class="modal-layout-padding">
                     <ibm-combo-box  appendInline="true" [items]="filterCharge"
-                        (keyup)="mySearch($event)" (selected)="selected($event)" formControlName="chargeFilterInput">
+                        (keyup)="mySearch($event)" (click)="mySearch($event)" (selected)="selected($event)" formControlName="chargeFilterInput" label="Charges">
                         <ibm-dropdown-list></ibm-dropdown-list>
                     </ibm-combo-box >
                     <ibm-tag-filter type="blue" closeButtonLabel="Clear" (close)="onClose(x.id)"
