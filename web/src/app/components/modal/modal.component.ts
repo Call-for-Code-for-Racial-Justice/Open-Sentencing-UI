@@ -4,10 +4,12 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { BaseModal, ListItem, ModalService } from 'carbon-components-angular';
 import { ModalSvc } from './modal.service';
 import { Subject } from 'rxjs';
+
 import { Race } from 'src/app/models/client/Race';
 import { Gender } from 'src/app/models/client/Gender';
 import { validateGender } from './validation/GenderValidators';
 import { validateRace } from './validation/RaceValidators';
+
 
 @Component({
   selector: 'app-sample-modal',
@@ -30,118 +32,7 @@ export class ModalComponent extends BaseModal implements OnInit {
   raceIsSelected
 
   // charges record
-  charges = [
-    'Administration of Justice',
-    'Aggravated Assault Police Officer',
-    'Aggravated Battery Police Officer',
-    'Aggravated Battery With A Firearm',
-    'Aggravated Battery',
-    'Aggravated Discharge Firearm',
-    'Aggravated DUI',
-    'Aggravated Fleeing and Eluding',
-    'Aggravated Identity Theft',
-    'Aggravated Robbery',
-    'Antitrust',
-    'Armed Robbery',
-    'Armed Violence',
-    'Arson and Attempt Arson',
-    'Arson',
-    'Attempt Armed Robbery',
-    'Attempt Arson',
-    'Attempt First Degree Murder',
-    'Attempt Homicide',
-    'Attempt Sex Crimes',
-    'Attempt Vehicular Hijacking',
-    'Battery',
-    'Bomb Threat',
-    'Bribery',
-    'Bribery/Corruption',
-    'Burglary',
-    'Burglary/Trespass',
-    'Child Abduction',
-    'Child Pornography',
-    'Commercialized Vice',
-    'Communicating With Witness',
-    'Credit Card Cases',
-    'Criminal Damage to Property',
-    'Criminal Trespass To Residence',
-    'Deceptive Practice',
-    'Disarming Police Officer',
-    'Dog Fighting',
-    'Domestic Battery',
-    'Driving With Suspended Or Revoked License',
-    'Drug Possession',
-    'Drug Trafficking',
-    'DUI',
-    'Environmental',
-    'Escape - Failure to Return',
-    'Extortion/Racketeering',
-    'FALSIFICATION OF ACCOUNTS',
-    'Failure to Register as a Sex Offender',
-    'Firearms',
-    'Food and Drug',
-    'Forgery',
-    'Forgery/Counter/Copyright',
-    'Fraud',
-    'Fraud/Theft/Embezzlement',
-    'Fraudulent ID',
-    'Gambling',
-    'Gun - Non UUW',
-    'Gun Running',
-    'Hate Crimes',
-    'Home Invasion',
-    'Homicide',
-    'Human Trafficking',
-    'Identity Theft',
-    'Immigration',
-    'Impersonating Police Officer',
-    'Intimidation',
-    'Invidual Rights',
-    'Kidnapping',
-    'Major Accidents',
-    'Manslaughter',
-    'Money Laundering',
-    'Murder',
-    'Narcotics',
-    'National Defense',
-    'Obscenity/Other Sex Offenses',
-    'Obstructing Justice',
-    'Official Misconduct',
-    'Other Offense',
-    'Other',
-    'Pandering',
-    'Perjury',
-    'Possession Of Burglary Tools',
-    'Possession of Contraband in Penal Institution',
-    'Possession of Explosives',
-    'Possession of Stolen Motor Vehicle',
-    'Prison Offenses',
-    'PROMIS Conversion',
-    'Prostitution',
-    'Reckless Discharge of Firearm',
-    'Reckless Homicide',
-    'Residential Burglary',
-    'Retail Theft',
-    'REVOKED/SUSPENDED 2ND+ DUI',
-    'Robbery',
-    'Sex Crimes',
-    'SEX WITH ANIMAL/<18 PRESENT',
-    'Sexual Abuse',
-    'Stalking',
-    'Stalking/Harassing',
-    'Tampering',
-    'Tax',
-    'Theft by Deception',
-    'Theft',
-    'Unlawful Restraint',
-    'UUW - Unlawful Use of Weapon',
-    'Vehicular Hijacking',
-    'Vehicular Invasion',
-    'Violate Bail Bond',
-    'VIO BAIL BOND/CLASS X CONVIC',
-    'Violation of Sex Offender Registration',
-    'Violation Order Of Protection'
-  ];
+  charges = Charges.chargesList;
 
   // step-1 model
   textForButton = 'Next: Case details';
@@ -188,6 +79,7 @@ export class ModalComponent extends BaseModal implements OnInit {
     this.showProgress();
     
     const initialGender = '';
+
     const initialRace = '';
 
     this.defendantAndCaseForm = this.fb.group({
@@ -199,6 +91,7 @@ export class ModalComponent extends BaseModal implements OnInit {
             validateRace
           ]
         }),
+
         defendantGender: new FormControl(initialGender, {
           validators: [
             Validators.required, 
@@ -224,6 +117,7 @@ export class ModalComponent extends BaseModal implements OnInit {
 
     this.validateDefendantName = this.defendantAndCaseForm.controls['defendantname'];
     this.validateDefendantGender= this.defendantAndCaseForm.controls.defendantGender;
+
     this.validateDefendantRace = this.defendantAndCaseForm.controls.defendantRace;
     this.validateFilter = this.defendantAndCaseForm.controls['chargeFilterInput']
     this.charges.forEach(charge => {
