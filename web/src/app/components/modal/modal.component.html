@@ -58,7 +58,7 @@
             <div  class="modal-layout-margin--bottom " *ngIf="stepCounter === 'Second'">
                 <div class="modal-layout-padding">
                     <ibm-combo-box  appendInline="true" [items]="filterCharge"
-                        (keyup)="mySearch($event)" (selected)="selected($event)" formControlName="chargeFilterInput">
+                        (keyup)="mySearch($event)" (click)="mySearch($event)" (selected)="selected($event)" formControlName="chargeFilterInput" label="Charges">
                         <ibm-dropdown-list></ibm-dropdown-list>
                     </ibm-combo-box >
                     <ibm-tag-filter type="blue" closeButtonLabel="Clear" (close)="onClose(x.id)"
