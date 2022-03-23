@@ -25,9 +25,9 @@ export class AuthenticationService {
     try {
     this.appid.init({
       // REPLACE with credentials from IBM CLOUD APPID Service
-      clientId:  "cc3722a9-ac2a-43ad-b9cf-af7ed5849dd6",
+      clientId:  '<CLIENT-ID>',
       // REPLACE with credentials from IBM CLOUD APPID Service
-      discoveryEndpoint: "https://us-south.appid.cloud.ibm.com/oauth/v4/93bae1db-bc6e-474e-9ba3-02969479a286/.well-known/openid-configuration"
+      discoveryEndpoint: '<DISCOVERY-ENDPOINT-URL>'
     });
   } catch (e) {
     console.log("Login Error ::", e);
