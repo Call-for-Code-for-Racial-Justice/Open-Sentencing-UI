@@ -27,7 +27,7 @@ export class AuthenticationService {
       // REPLACE with credentials from IBM CLOUD APPID Service
       clientId:  '<CLIENT-ID>',
       // REPLACE with credentials from IBM CLOUD APPID Service
-      discoveryEndpoint:'<DISCOVERY-ENDPOINT-URL>'
+      discoveryEndpoint: '<DISCOVERY-ENDPOINT-URL>'
     });
   } catch (e) {
     console.log("Login Error ::", e);

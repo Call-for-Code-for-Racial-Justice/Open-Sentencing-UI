@@ -9,6 +9,7 @@ import { Race } from 'src/app/models/client/Race';
 import { Gender } from 'src/app/models/client/Gender';
 import { validateGender } from './validation/GenderValidators';
 import { validateRace } from './validation/RaceValidators';
+import { Charges } from 'src/app/utils/charges';
 
 
 @Component({
